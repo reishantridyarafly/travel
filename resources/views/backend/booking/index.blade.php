@@ -32,65 +32,39 @@
                             <thead>
                                 <tr>
                                     <th class="text-center border-bottom p-3">No</th>
-                                    <th class="border-bottom p-3">Bukti Transfer</th>
-                                    <th class="border-bottom p-3">Kode Transaksi</th>
                                     <th class="border-bottom p-3">Kode Booking</th>
-                                    <th class="border-bottom p-3">Nama Pemesan</th>
-                                    <th class="border-bottom p-3">Bank</th>
-                                    <th class="border-bottom p-3">Total</th>
+                                    <th class="border-bottom p-3">Nama Paket</th>
+                                    <th class="border-bottom p-3">Nama Pemasanan</th>
+                                    <th class="border-bottom p-3">Tanggal Dibooking</th>
+                                    <th class="border-bottom p-3">Harga</th>
                                     <th class="border-bottom p-3">Status</th>
-                                    @foreach($transactions as $transaction)
-                                    @if ($transaction->status == 'pending')
-                                    <th class="border-bottom p-3">Aksi</th>
-                                    @break
-                                    @endif
-                                    @endforeach
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Start -->
-                                @foreach($transactions as $transaction)
+                                @foreach($bookings as $booking)
                                     <tr>
                                         <th class="text-center p-3" style="width: 5%;">{{ $loop->iteration }}</th>
+                                        <td class="p-3">{{ $booking->id }}</td>
+                                        <td class="p-3">{{ $booking->package->name }}</td>
+                                        <td class="p-3">{{ $booking->user->first_name }} {{ $booking->user->last_name }}</td>
+                                        <td class="p-3">{{ date('d/m/Y', strtotime($booking->start_date)) }} - {{ date('d/m/Y', strtotime($booking->start_date)) }}</td>
+                                        <td class="p-3">Rp {{ number_format($booking->package->price, 0, ',', '.') }}</td>
                                         <td class="p-3">
-                                            <a href="{{ asset('storage/checkout/' . $transaction->photo_evidence) }}" target="_blank">
-                                                <img src="{{ asset('storage/checkout/' . $transaction->photo_evidence) }}" width="70px" class="img-fluid" alt="image-receipt">
-                                              </a>
-                                        </td>
-                                        <td class="p-3">{{ $transaction->id }}</td>
-                                        <td class="p-3">{{ $transaction->booking_id }}</td>
-                                        <td class="p-3">{{ $transaction->booking->user->first_name }} {{ $transaction->booking->user->last_name }}</td>
-                                        <td class="p-3">{{ $transaction->name_bank }}</td>
-                                        <td class="p-3">Rp {{ number_format($transaction->total, 0, ',', '.') }}</td>
-                                        <td class="p-3">
-                                            @if ($transaction->status == 'pending')
+                                            @if ($booking->status == 'pending')
                                                 <div class="badge bg-soft-secondary rounded px-3 py-1">
-                                                    {{ strtoupper($transaction->status) }}
+                                                    {{ strtoupper($booking->status) }}
                                                 </div>
-                                            @elseif ($transaction->status == 'success')
+                                            @elseif ($booking->status == 'success')
                                                 <div class="badge bg-soft-success rounded px-3 py-1">
-                                                    {{ strtoupper($transaction->status) }}
+                                                    {{ strtoupper($booking->status) }}
                                                 </div>
                                             @else
                                                 <div class="badge bg-soft-danger rounded px-3 py-1">
-                                                    {{ strtoupper($transaction->status) }}
+                                                    {{ strtoupper($booking->status) }}
                                                 </div>
                                             @endif
                                         </td>
-                                        @if ($transaction->status == 'pending')
-                                        <td class="p-3">
-                                            <form action="{{ route('transaction_validated') }}" method="POST" class="d-flex mb-2">
-                                                @csrf
-                                                <input type="hidden" name="booking_id" value="{{ $transaction->booking_id }}">
-                                                <button type="submit" class="btn btn-success btn-sm">Validasi</button>
-                                            </form>
-                                            <form action="{{ route('transaction_rejected') }}" method="POST" class="d-flex">
-                                                @csrf
-                                                <input type="hidden" name="booking_id" value="{{ $transaction->booking_id }}">
-                                                <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
-                                            </form>
-                                        </td>
-                                        @endif
                                     </tr>
                                 @endforeach
                                 <!-- End -->

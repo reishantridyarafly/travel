@@ -9,6 +9,8 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $keyType = 'string';
+
     protected $guarded = [];
 
     public function booking()

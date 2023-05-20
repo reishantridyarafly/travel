@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Data Laporan - Rania Sport</title>
+        <title>Data Laporan - CV Langkuy Project</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -30,10 +30,9 @@
                         <thead>
                             <tr>
                                 <th class="text-center border-bottom p-3" width="4px">No</th>
-                                <th class="border-bottom p-3">Kode Order</th>
+                                <th class="border-bottom p-3">Nama Paket</th>
                                 <th class="border-bottom p-3">Nama Pembeli</th>
-                                <th class="border-bottom p-3">Tanggal</th>
-                                <th class="border-bottom p-3">Metode</th>
+                                <th class="border-bottom p-3">Tanggal Transaksi</th>
                                 <th class="border-bottom p-3">Bank</th>
                                 <th class="border-bottom p-3">Total</th>
                             </tr>
@@ -43,12 +42,11 @@
                             @foreach($transactions as $transaction)
                                 <tr>
                                     <th class="text-center">{{ $loop->iteration }}</th>
-                                    <td class="p-3">{{ $transaction->order_id }}</td>
-                                    <td class="p-3">{{ $transaction->order->user->name }}</td>
-                                    <td class="p-3">{{ date('d-m-Y', strtotime($start_date)) }}</td>
-                                    <td class="p-3">Transfer Bank</td>
-                                    <td class="p-3">{{ strtoupper($transaction->bank) }}</td>
-                                    <td class="p-3">Rp {{ number_format($transaction->gross_amount, 0, ',', '.') }}</td>
+                                    <td class="p-3">{{ $transaction->booking->package->name }}</td>
+                                    <td class="p-3">{{ $transaction->booking->user->first_name }} {{ $transaction->booking->user->last_name }}</td>
+                                    <td class="p-3">{{ date('d/m/Y', strtotime($transaction->updated_at)) }}</td>
+                                    <td class="p-3">{{ strtoupper($transaction->name_bank) }}</td>
+                                    <td class="p-3">Rp {{ number_format($transaction->total, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                             <!-- End -->

@@ -12,6 +12,11 @@ class PackageController extends Controller
 {
     public function index()
     {
+        // Check user role
+        if (!auth()->user()->hasRole('admin')) {
+            return redirect()->back();
+        }
+
         // get data
         $packages = Package::all();
 

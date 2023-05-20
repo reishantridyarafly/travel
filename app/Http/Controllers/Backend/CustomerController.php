@@ -11,6 +11,11 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        // Check user role
+        if (!auth()->user()->hasRole('admin')) {
+            return redirect()->back();
+        }
+
         // get data
         $customers = User::whereDoesntHave('roles', function ($query) {
                         $query->where('name', '=', 'admin')->orWhere('name', '=', 'owner');

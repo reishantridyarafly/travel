@@ -32,7 +32,7 @@
                                 <img src="{{ asset('storage/users/' . Auth::user()->image) }}" class="avatar avatar-md-sm rounded-circle border shadow" alt="avatar">
                             @endif
                             <div class="flex-1 ms-2">
-                                <span class="d-block">{{ Auth::user()->name }}</span>
+                                <span class="d-block">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                                 <small class="text-muted">{{ Auth::user()->hasRole('admin') ? 'Administrator' : 'Owner' }}</small>
                             </div>
                         </a>

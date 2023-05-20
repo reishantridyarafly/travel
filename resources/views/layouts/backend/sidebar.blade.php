@@ -13,12 +13,35 @@
 
         <ul class="sidebar-menu">
             <li><a href="{{ route('dashboard') }}"><i class="uil uil-estate me-2"></i>Dashboard</a></li>
+            @if (Auth::user()->hasRole('admin'))
             <li><a href="{{ route('packages.index') }}"><i class="uil uil-package me-2"></i>Paket</a></li>
-            <li><a href=""><i class="uil uil-receipt me-2"></i>Booking</a></li>
-            <li><a href=""><i class="uil uil-transaction me-2"></i>Transaksi</a></li>
+            @endif
+            <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="uil uil-receipt me-2"></i>Booking</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="{{ route('booking_pending') }}">Booking Pending</a></li>
+                        <li><a href="{{ route('booking_success') }}">Booking Sukses</a></li>
+                        <li><a href="{{ route('booking_failed') }}">Booking Gagal</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="uil uil-transaction me-2"></i>Transaksi</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="{{ route('transaction_pending') }}">Transaksi Pending</a></li>
+                        <li><a href="{{ route('transaction_success') }}">Transaksi Sukses</a></li>
+                        <li><a href="{{ route('transaction_failed') }}">Transaksi Gagal</a></li>
+                    </ul>
+                </div>
+            </li>
+            @if (Auth::user()->hasRole('admin'))
             <li><a href="{{ route('customers.index') }}"><i class="uil uil-users-alt me-2"></i>Pelanggan</a></li>
-            <li><a href=""><i class="uil uil-folder me-2"></i>Laporan</a></li>
             <li><a href="{{ route('payments.index') }}"><i class="uil uil-credit-card me-2"></i>Payment</a></li>
+            @elseif (Auth::user()->hasRole('owner'))
+            <li><a href="{{ route('reports') }}"><i class="uil uil-folder me-2"></i>Laporan</a></li>
+            @endif
             <li class="sidebar-dropdown">
                 <a href="javascript:void(0)"><i class="uil uil-user me-2"></i>Akun</a>
                 <div class="sidebar-submenu">
