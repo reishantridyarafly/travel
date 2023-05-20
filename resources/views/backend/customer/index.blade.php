@@ -38,7 +38,8 @@
                                     <th class="text-center border-bottom p-3">No</th>
                                     <th class="border-bottom p-3">Foto</th>
                                     <th class="border-bottom p-3">Nama Lengkap</th>
-                                    <th class="border-bottom p-3">Telepon</th>
+                                    <th class="border-bottom p-3">Username</th>
+                                    <th class="border-bottom p-3">No. Hp</th>
                                     <th class="border-bottom p-3">Email</th>
                                     <th class="border-bottom p-3">Aksi</th>
                                 </tr>
@@ -55,8 +56,9 @@
                                                 <img src="{{ asset('storage/users/' . $customer->image) }}" width="70px" class="img-fluid" alt="image-customers">
                                             @endif
                                         </td>
-                                        <td class="p-3">{{ $customer->name }}</td>
-                                        <td class="p-3">{{ $customer->telephone }}</td>
+                                        <td class="p-3">{{ $customer->first_name }} {{ $customer->last_name }}</td>
+                                        <td class="p-3">{{ $customer->username }}</td>
+                                        <td class="p-3">{{ $customer->no_hp }}</td>
                                         <td class="p-3">{{ $customer->email }}</td>
                                         <td style="width: 5%;">
                                             <a href="customers/{{ $customer->id }}/edit" class="btn btn-warning btn-sm mb-2"><i class="fa-solid fa-pen"></i> Edit</a>
@@ -89,17 +91,6 @@
     $(document).ready(function() {
         $('#table').DataTable();
     });
-
-    // function preview image
-    function previewImg() {
-        const logo = document.querySelector('#image');
-        const imgPreview = document.querySelector('.img-preview');
-        const fileImg = new FileReader();
-        fileImg.readAsDataURL(logo.files[0]);
-        fileImg.onload = function(e) {
-            imgPreview.src = e.target.result;
-        }
-    }
 
     // show dialog success
     @if (Session::has('message'))

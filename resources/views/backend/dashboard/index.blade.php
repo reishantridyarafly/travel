@@ -7,12 +7,12 @@
     <div class="layout-specing">
         <div class="d-flex align-items-center justify-content-between">
             <div>
-                <h6 class="text-muted mb-1">Welcome back, {{ Auth::user()->name }}!</h6>
+                <h6 class="text-muted mb-1">Welcome back, {{ Auth::user()->first_name }}!</h6>
                 <h5 class="mb-0">Dashboard</h5>
             </div>
         </div>
 
-        <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1">
+        {{-- <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1">
             <div class="col mt-4">
                 <a href="#!" class="features feature-primary d-flex justify-content-between align-items-center rounded shadow p-3">
                     <div class="d-flex align-items-center">
@@ -161,12 +161,12 @@
                     <div id="lowest-product"></div>
                 </div>
             </div><!--end col-->
-        </div><!--end row-->
+        </div><!--end row--> --}}
     </div>
 </div>
 @endsection
 
-@section('javascript')
+{{-- @section('javascript')
 <script src="{{ asset('backend') }}/libs/apexcharts/apexcharts.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -319,4 +319,4 @@
 
 </script>
 
-@endsection
+@endsection --}}

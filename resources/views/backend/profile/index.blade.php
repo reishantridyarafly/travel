@@ -61,11 +61,11 @@
                                 </div><!--end col-->
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Nama Lengkap</label>
+                                        <label class="form-label">Username <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5 @error('name') is-invalid @enderror" placeholder="Nama Lengkap" name="name" value="{{ $profile->name }}" required autocomplete="name">
-                                            @error('name')
+                                            <input type="text" class="form-control ps-5 @error('username') is-invalid @enderror" placeholder="Nama Depan" name="username" value="{{ $profile->username }}" autocomplete="username">
+                                            @error('username')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -75,11 +75,39 @@
                                 </div><!--end col-->
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Telepon <span class="text-danger">*</span></label>
+                                        <label class="form-label">Nama Depan <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5 @error('first_name') is-invalid @enderror" placeholder="Nama Depan" name="first_name" value="{{ $profile->first_name }}" autocomplete="first_name">
+                                            @error('first_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nama Belakang</label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5 @error('last_name') is-invalid @enderror" placeholder="Nama Belakang" name="last_name" value="{{ $profile->last_name }}" autocomplete="last_name">
+                                            @error('last_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">No. Hp <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="phone" class="fea icon-sm icons"></i>
-                                            <input type="number" class="form-control ps-5 @error('telephone') is-invalid @enderror" placeholder="Telepon" name="telephone" value="{{ $profile->telephone }}" required autocomplete="telephone">
-                                            @error('telephone')
+                                            <input type="number" class="form-control ps-5 @error('no_hp') is-invalid @enderror" placeholder="Telepon" name="no_hp" value="{{ $profile->no_hp }}" autocomplete="no_hp">
+                                            @error('no_hp')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -92,7 +120,7 @@
                                         <label class="form-label">Email <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="mail" class="fea icon-sm icons"></i>
-                                            <input type="email" class="form-control ps-5 @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ $profile->email }}" required autocomplete="email">
+                                            <input type="email" class="form-control ps-5 @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ $profile->email }}" autocomplete="email">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -101,15 +129,6 @@
                                         </div>
                                     </div>
                                 </div><!--end col-->
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Alamat Lengkap <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="map-pin" class="fea icon-sm icons"></i>
-                                            <textarea class="form-control ps-5" placeholder="Alamat Lengkap" name="address" required autocomplete="address">{{ $profile->address }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
                             </div><!--end row-->
                             <div class="row">
                                 <div class="col-sm-12">

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_bank');
             $table->string('account_number');
-            $table->string('recipients name');
+            $table->string('name_owner');
             $table->timestamps();
         });
     }

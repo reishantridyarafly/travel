@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('title');
+            $table->string('name');
+            $table->string('slug');
             $table->string('location');
             $table->text('benefit');
-            $table->double('price');
+            $table->decimal('price', 11, 2);
             $table->timestamps();
         });
     }

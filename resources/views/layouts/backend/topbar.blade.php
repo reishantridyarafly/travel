@@ -33,14 +33,13 @@
                             @endif
                             <div class="flex-1 ms-2">
                                 <span class="d-block">{{ Auth::user()->name }}</span>
-                                <small class="text-muted">{{ Auth::user()->hasRole('admin') ? 'Administrator' : 'User' }}</small>
+                                <small class="text-muted">{{ Auth::user()->hasRole('admin') ? 'Administrator' : 'Owner' }}</small>
                             </div>
                         </a>
                         <a class="dropdown-item text-dark" href="{{ route('dashboard') }}"><span class="mb-0 d-inline-block me-1"><i class="ti ti-home"></i></span> Dashboard</a>
                         <a class="dropdown-item text-dark" href="{{ route('profile.index') }}"><span class="mb-0 d-inline-block me-1"><i class="ti ti-user"></i></span> Profil</a>
                         <a class="dropdown-item text-dark" href="{{ route('change-password.index') }}"><span class="mb-0 d-inline-block me-1"><i class="ti ti-key"></i></span> Ganti Kata Sandi</a>
                         <div class="dropdown-divider border-top"></div>
-                        <a class="dropdown-item text-dark" href="{{ route('setting.index') }}"><span class="mb-0 d-inline-block me-1"><i class="ti ti-settings"></i></span> Pengaturan</a>
                         <a class="dropdown-item text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><span class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span> Keluar</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

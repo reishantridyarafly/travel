@@ -1,6 +1,3 @@
-@php
-    $setting = App\Models\Setting::find(1);
-@endphp
 <!doctype html>
 <html lang="en" dir="ltr">
 
@@ -11,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- favicon -->
-        <link rel="shortcut icon" href="{{ asset('storage/settings/' . $setting->favicon ) }}" />
+        <link rel="shortcut icon" href="{{ asset('backend') }}/images/favicon.ico" />
         <!-- Css -->
         <link href="{{ asset('backend') }}/libs/simplebar/simplebar.min.css" rel="stylesheet">
         <!-- Bootstrap Css -->

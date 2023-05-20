@@ -53,7 +53,7 @@
 
                         <div class="form-floating mb-2">
                             <input type="number" class="form-control @error('no_hp') is-invalid @enderror"  name="no_hp" id="floatingInput" placeholder="nama@gmail.com" value="{{ old('no_hp') }}" autocomplete="no_hp">
-                            <label for="floatingInput">No. HP</label>
+                            <label for="floatingInput">No. Hp</label>
                             @error('no_hp')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

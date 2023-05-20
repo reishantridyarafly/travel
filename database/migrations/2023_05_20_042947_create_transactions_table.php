@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('id')->primary();
             $table->string('booking_id');
             $table->string('name_bank');
-            $table->string('photo evidence');
+            $table->string('photo_evidence');
             $table->double('price');
             $table->string('status')->default('pending');
             $table->timestamps();
