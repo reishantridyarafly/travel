@@ -39,9 +39,8 @@
             @if (Auth::user()->hasRole('admin'))
             <li><a href="{{ route('customers.index') }}"><i class="uil uil-users-alt me-2"></i>Pelanggan</a></li>
             <li><a href="{{ route('payments.index') }}"><i class="uil uil-credit-card me-2"></i>Payment</a></li>
-            @elseif (Auth::user()->hasRole('owner'))
-            <li><a href="{{ route('reports') }}"><i class="uil uil-folder me-2"></i>Laporan</a></li>
             @endif
+            <li><a href="{{ route('reports') }}"><i class="uil uil-folder me-2"></i>Laporan</a></li>
             <li class="sidebar-dropdown">
                 <a href="javascript:void(0)"><i class="uil uil-user me-2"></i>Akun</a>
                 <div class="sidebar-submenu">

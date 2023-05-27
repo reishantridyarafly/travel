@@ -10,11 +10,6 @@ class ReportController extends Controller
 {
     public function index()
     {
-        // Check user role
-        if (!auth()->user()->hasRole('owner')) {
-            return redirect()->back();
-        }
-
         return view('backend.report.index');
     }
 
