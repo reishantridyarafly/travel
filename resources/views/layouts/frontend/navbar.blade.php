@@ -27,7 +27,7 @@
 
         <!--Login button Start-->
         <ul class="buy-button list-inline mb-0">
-            <li class="list-inline-item ps-1 mb-0">
+            {{-- <li class="list-inline-item ps-1 mb-0">
                 <div class="dropdown">
                     <button type="button" class="login-btn-primary btn btn-icon btn-pills btn-soft-primary btn dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i data-feather="search" class="fea icon-sm"></i>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             @guest
                 @if (Route::has('login'))
@@ -86,9 +86,9 @@
             <!-- Navigation Menu-->
             <ul class="navigation-menu nav-light">
                 <li><a href="" class="sub-menu-item">Beranda</a></li>
-                <li><a href="" class="sub-menu-item">Tentang</a></li>
+                <li><a href="#about" class="sub-menu-item">Tentang</a></li>
+                <li><a href="#package" class="sub-menu-item">Paket</a></li>
                 <li><a href="" class="sub-menu-item">Booking</a></li>
-                <li><a href="" class="sub-menu-item">SQA</a></li>
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->
