@@ -134,6 +134,7 @@
                                 <li class="h6 text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>1 Domain Free</li>
                                 <li class="h6 text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Free Installment</li>
                             </ul>
+                            <a href="javascript:void(0)" class="btn btn-primary mt-4">Booking</a>
                         </div>
                     </div><!--end items-->
                 </div>
