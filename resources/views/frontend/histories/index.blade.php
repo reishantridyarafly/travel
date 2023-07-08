@@ -146,7 +146,7 @@
                                         <span class="fw-bold">{{ date('d/m/Y', strtotime($booking->end_date)) }}</span>
                                     </div>
                                     @if ($booking->transactions && $booking->transactions->isNotEmpty())
-                                        @if ($booking->transactions->first()->photo_evidence != null)
+                                        @if ($booking->transactions->first()->status == 'success')
                                             <div class="col-6 mb-2">
                                                 <span>Tanggal Divalidasi</span>
                                             </div>

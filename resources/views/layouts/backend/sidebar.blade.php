@@ -26,16 +26,6 @@
                     </ul>
                 </div>
             </li>
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="uil uil-transaction me-2"></i>Transaksi</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="{{ route('transaction_pending') }}">Transaksi Pending</a></li>
-                        <li><a href="{{ route('transaction_success') }}">Transaksi Sukses</a></li>
-                        <li><a href="{{ route('transaction_failed') }}">Transaksi Gagal</a></li>
-                    </ul>
-                </div>
-            </li>
             @if (Auth::user()->hasRole('admin'))
             <li><a href="{{ route('customers.index') }}"><i class="uil uil-users-alt me-2"></i>Pelanggan</a></li>
             <li><a href="{{ route('payments.index') }}"><i class="uil uil-credit-card me-2"></i>Payment</a></li>
