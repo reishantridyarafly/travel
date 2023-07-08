@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('photo_evidence')->nullable();
             $table->decimal('total', 11, 2);
             $table->string('status')->default('pending');
-            $table->timestamp('expired');
+            $table->timestamp('expired_at');
             $table->timestamps();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
         });

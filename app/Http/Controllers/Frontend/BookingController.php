@@ -182,7 +182,7 @@ class BookingController extends Controller
             'booking_id' => $booking,
             'name_bank' => $bank,
             'total' => $total,
-            'expired' => $expired,
+            'expired_at' => $expired,
         ]);
 
         return redirect()->route('payment_detail', ['id' => $booking]);
