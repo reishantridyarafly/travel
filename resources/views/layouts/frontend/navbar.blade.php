@@ -3,14 +3,10 @@
     <div class="container">
         <!-- Logo container-->
         <a class="logo" href="index.html">
-            <span class="logo-light-mode">
-                <img src="{{ asset('frontend') }}/images/logo-dark.png" class="l-dark" height="24" alt="">
-                <img src="{{ asset('frontend') }}/images/logo-light.png" class="l-light" height="24" alt="">
-            </span>
+            <img src="{{ asset('frontend') }}/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
             <img src="{{ asset('frontend') }}/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
         </a>
-
-        <!-- End Logo container-->
+        <!-- Logo End -->
         <div class="menu-extras">
             <div class="menu-item">
                 <!-- Mobile menu toggle-->
@@ -27,39 +23,22 @@
 
         <!--Login button Start-->
         <ul class="buy-button list-inline mb-0">
-            {{-- <li class="list-inline-item ps-1 mb-0">
-                <div class="dropdown">
-                    <button type="button" class="login-btn-primary btn btn-icon btn-pills btn-soft-primary btn dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i data-feather="search" class="fea icon-sm"></i>
-                    </button>
-                    <button type="button" class="login-btn-light btn btn-icon btn-pills btn-light btn dropdown-toggle p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i data-feather="search" class="fea icon-sm"></i>
-                    </button>
-                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 p-0" style="width: 300px;">
-                        <div class="search-bar">
-                            <div id="itemSearch" class="menu-search mb-0">
-                                <form action="" method="get" id="searchItemform" class="searchform">
-                                    <input type="text" class="form-control border rounded" name="key" id="searchItem" placeholder="Search...">
-                                    <input type="submit" id="searchItemsubmit" value="Search">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li> --}}
-
             @guest
                 @if (Route::has('login'))
                 <li class="list-inline-item mb-0">
-                    <a href="{{ route('login') }}" class="login-btn-primary btn btn-primary">Masuk</a>
-                    <a href="{{ route('login') }}" class="login-btn-light btn btn-light">Masuk</a>
+                    <a href="{{ route('login') }}" class="{{ Request::routeIs('/') ? 'login-btn-primary' : ''}} btn btn-primary">Masuk</a>
+                    @if (Request::routeIs('/'))
+                        <a href="{{ route('login') }}" class="login-btn-light btn btn-light">Masuk</a>
+                    @endif
                 </li>
                 @endif
             @else
                 <li class="list-inline-item mb-0">
                     <div class="dropdown dropdown-primary">
-                        <button type="button" class="login-btn-primary btn btn-icon btn-pills btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
-                        <button type="button" class="login-btn-light btn btn-icon btn-pills btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
+                        <button type="button" class="{{ Request::routeIs('/') ? 'login-btn-primary' : ''}} btn btn-icon btn-pills btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
+                        @if (Request::routeIs('/'))
+                            <button type="button" class="login-btn-light btn btn-icon btn-pills btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
+                        @endif
                         <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3" style="width: 200px;">
                             @if (Auth::user()->hasRole('admin'))
                                 <a class="dropdown-item text-dark" href="{{ route('dashboard') }}"><i class="uil uil-estate align-middle me-1"></i> Dashboard</a>
@@ -84,11 +63,11 @@
 
         <div id="navigation">
             <!-- Navigation Menu-->
-            <ul class="navigation-menu nav-light">
-                <li><a href="" class="sub-menu-item">Beranda</a></li>
-                <li><a href="#about" class="sub-menu-item">Tentang</a></li>
-                <li><a href="#package" class="sub-menu-item">Paket</a></li>
-                <li><a href="" class="sub-menu-item">Booking</a></li>
+            <ul class="navigation-menu {{ Request::routeIs('/') ? 'nav-light' : '' }}">
+                <li><a href="{{ route('/') }}" class="sub-menu-item {{ Request::is('/') ? 'active' : '' }}">Beranda</a></li>
+                <li><a href="#about" class="sub-menu-item {{ Request::is('#about') ? 'active' : '' }}">Tentang</a></li>
+                <li><a href="#package" class="sub-menu-item {{ Request::is('#package') ? 'active' : '' }}">Paket</a></li>
+                <li><a href="{{ route('booking') }}" class="sub-menu-item {{ Request::is('booking') ? 'active' : '' }}">Booking</a></li>
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->

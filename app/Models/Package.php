@@ -11,6 +11,11 @@ class Package extends Model
 
     protected $guarded = [];
 
+    public function benefits()
+    {
+        return $this->hasMany(Benefit::class);
+    }
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);

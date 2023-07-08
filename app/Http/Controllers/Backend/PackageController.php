@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Package;
+use App\Models\Benefit;
 
 class PackageController extends Controller
 {
@@ -35,7 +36,7 @@ class PackageController extends Controller
             'name' => 'required|max:255',
             'location' => 'required|max:255',
             'price' => 'required|max:11',
-            'benefit' => 'required',
+            'benefits' => 'required',
         ]);
 
         // process upload image
@@ -50,14 +51,24 @@ class PackageController extends Controller
         $price = str_replace(['Rp ', '.', ','], ['', '', ''], $request->price);
 
         // insert to table packages
-        Package::create([
+        $packages = Package::create([
             'image' => $imageName,
             'name' => $request->name,
             'slug'  => Str::slug($request->name, '-'),
             'location' => $request->location,
             'price' => $price,
-            'benefit' => $request->benefit,
         ]);
+
+        // split benefits into array
+        $benefits = explode(',', $request->benefits);
+
+        // insert new benefits
+        foreach ($benefits as $benefit) {
+            Benefit::create([
+                'name' => $benefit,
+                'package_id' => $packages->id,
+            ]);
+        }
 
         return redirect('packages')->with('message', 'Paket berhasil ditambahkan!');
     }
@@ -78,7 +89,7 @@ class PackageController extends Controller
             'name' => 'required|max:255',
             'location' => 'required|max:255',
             'price' => 'required|max:11',
-            'benefit' => 'required',
+            'benefits' => 'required',
         ]);
 
         // get data find or fail by id
@@ -103,8 +114,21 @@ class PackageController extends Controller
             'slug'  => Str::slug($request->name, '-'),
             'location' => $request->location,
             'price' => $price,
-            'benefit' => $request->benefit,
         ]);
+
+        // split benefits into array
+        $benefits = explode(',', $request->benefits);
+
+        // delete existing benefits
+        $package->benefits()->delete();
+
+        // insert new benefits
+        foreach ($benefits as $benefit) {
+            Benefit::create([
+                'name' => $benefit,
+                'package_id' => $package->id,
+            ]);
+        }
 
         return redirect('packages')->with('message', 'Paket berhasil diubah!');
     }

@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/responsive.bootstrap5.min.css">
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.css"/>
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/summernote/summernote-lite.css"/>
+<link rel="stylesheet" href="{{ asset('backend') }}/libs/tagsinput/tagsinput.css"/>
+<link rel="stylesheet" href="{{ asset('backend') }}/css/tag-input.css"/>
 @endsection
 
 @section('content')
@@ -65,7 +66,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Lokasi <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control @error('location') is-invalid @enderror" placeholder="Contoh: Bandung atau Bandung - Jakarta" name="location" value="{{ old('location') }}" autocomplete="location">
+                                        <input type="text" class="form-control @error('location') is-invalid @enderror" placeholder="Contoh: Bandung" name="location" value="{{ old('location') }}" autocomplete="location">
                                         @error('location')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -87,8 +88,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Benefit <span class="text-danger">*</span></label>
-                                        <textarea class="form-control @error('benefit') is-invalid @enderror" name="benefit" id="summernote" autocomplete="benefit">{{ old('benefit') }}</textarea>
-                                        @error('benefit')
+                                        <input type="text" class="form-control @error('benefits') is-invalid @enderror" name="benefits" id="benefits" value="{{ old('benefits') }}" data-role="tagsinput" autocomplete="benefits">
+                                        @error('benefits')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -119,8 +120,7 @@
 <script src="{{ asset('backend') }}/libs/data-tables/js/responsive.bootstrap5.min.js"></script>
 <script src="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.js"></script>
 <script src="{{ asset('backend') }}/libs/autoNumeric/autoNumeric.min.js"></script>
-<script src="{{ asset('backend') }}/libs/summernote/summernote-lite.min.js"></script>
-<script src="{{ asset('backend') }}/js/summernote.js"></script>
+<script src="{{ asset('backend') }}/libs/tagsinput/tagsinput.min.js"></script>
 <script>
     // function preview image
     function previewImg() {

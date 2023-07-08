@@ -39,6 +39,7 @@
                                     <th class="border-bottom p-3">Foto</th>
                                     <th class="border-bottom p-3">Nama Paket</th>
                                     <th class="border-bottom p-3">Lokasi</th>
+                                    <th class="border-bottom p-3">Benefit</th>
                                     <th class="border-bottom p-3">Harga</th>
                                     <th class="border-bottom p-3">Aksi</th>
                                 </tr>
@@ -53,6 +54,11 @@
                                         </td>
                                         <td class="p-3">{{ $package->name }}</td>
                                         <td class="p-3">{{ $package->location }}</td>
+                                        <td class="p-3">
+                                            @foreach ($package->benefits as $benefit)
+                                                {{ $benefit->name }},
+                                            @endforeach
+                                        </td>
                                         <td class="p-3">Rp {{ number_format($package->price, 0, ',', '.') }}</td>
                                         <td style="width: 5%;">
                                             <a href="packages/{{ $package->id }}/edit" class="btn btn-warning btn-sm mb-2"><i class="fa-solid fa-pen"></i> Edit</a>

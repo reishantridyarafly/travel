@@ -82,7 +82,7 @@ class CustomerController extends Controller
             $rules_username = 'required|max:255|regex:/^[^\s]+$/|unique:users';
         }
 
-        // // check if the user password
+        // check if the user password
         if ($request->password) {
             $rules_password = 'required|min:8|confirmed';
         } else {

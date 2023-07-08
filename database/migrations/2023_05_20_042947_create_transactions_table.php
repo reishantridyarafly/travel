@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('id')->primary();
             $table->string('booking_id');
             $table->string('name_bank');
-            $table->string('photo_evidence');
+            $table->string('photo_evidence')->nullable();
             $table->decimal('total', 11, 2);
             $table->string('status')->default('pending');
+            $table->timestamp('expired');
             $table->timestamps();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
         });

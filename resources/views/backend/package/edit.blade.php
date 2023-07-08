@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/responsive.bootstrap5.min.css">
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.css"/>
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/summernote/summernote-lite.css"/>
+<link rel="stylesheet" href="{{ asset('backend') }}/libs/tagsinput/tagsinput.css"/>
+<link rel="stylesheet" href="{{ asset('backend') }}/css/tag-input.css"/>
 @endsection
 
 @section('content')
@@ -88,8 +89,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Benefit <span class="text-danger">*</span></label>
-                                        <textarea class="form-control @error('benefit') is-invalid @enderror" name="benefit" id="summernote" autocomplete="benefit">{{ $package->benefit }}</textarea>
-                                        @error('benefit')
+                                        <input type="text" class="form-control @error('benefits') is-invalid @enderror" name="benefits" id="benefits" value="{{ implode(',', $package->benefits->pluck('name')->toArray()) }}" data-role="tagsinput" autocomplete="benefits">
+                                        @error('benefits')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -120,8 +121,7 @@
 <script src="{{ asset('backend') }}/libs/data-tables/js/responsive.bootstrap5.min.js"></script>
 <script src="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.js"></script>
 <script src="{{ asset('backend') }}/libs/autoNumeric/autoNumeric.min.js"></script>
-<script src="{{ asset('backend') }}/libs/summernote/summernote-lite.min.js"></script>
-<script src="{{ asset('backend') }}/js/summernote.js"></script>
+<script src="{{ asset('backend') }}/libs/tagsinput/tagsinput.min.js"></script>
 <script>
     // function preview image
     function previewImg() {

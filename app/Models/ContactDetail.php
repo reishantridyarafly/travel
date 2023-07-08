@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class ContactDetail extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
 
     protected $guarded = [];
 
@@ -24,13 +21,8 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function transactions()
+    public function booking()
     {
-        return $this->hasMany(Transaction::class);
-    }
-
-    public function contactDetails()
-    {
-        return $this->hasMany(Transaction::class);
+        return $this->belongsTo(Booking::class);
     }
 }
