@@ -172,14 +172,6 @@ class BookingController extends Controller
 
     public function paymentSave(Request $request)
     {
-        // get the currently logged in user
-        $user = Auth::user();
-
-        // if the user is not logged in, redirect to the login page
-        if (!$user) {
-            return redirect('login');
-        }
-
         $booking = $request->input('booking');
         $bank = $request->input('name_bank');
         $total = $request->input('total');
@@ -214,6 +206,14 @@ class BookingController extends Controller
 
     public function paymentDetail($id)
     {
+        // get the currently logged in user
+        $user = Auth::user();
+
+        // if the user is not logged in, redirect to the login page
+        if (!$user) {
+            return redirect('login');
+        }
+
         $transaction = Transaction::where('booking_id', $id)->first();
 
         $booking = Booking::find($id);
