@@ -19,14 +19,22 @@ Auth::routes();
 
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('/');
 Route::get('booking', [Frontend\BookingController::class, 'index'])->name('booking');
-Route::post('booking', [Frontend\BookingController::class, 'store'])->name('booking.store');
-Route::get('booking/contact_details/{id}', [Frontend\BookingController::class, 'contactDetails'])->name('contact_details');
-Route::post('save_contact_details', [Frontend\BookingController::class, 'contactDetailsSave'])->name('save_contact_details');
-Route::get('booking/payment/{id}', [Frontend\BookingController::class, 'payment'])->name('payment');
-Route::post('booking/payment', [Frontend\BookingController::class, 'paymentSave'])->name('payment.save');
-Route::get('booking/payment/detail/{id}', [Frontend\BookingController::class, 'paymentDetail'])->name('payment_detail');
-Route::put('booking/payment/detail/{id}', [Frontend\BookingController::class, 'paymentDetailSave'])->name('payment_detail.save');
 Route::get('search', [Frontend\HomeController::class, 'search'])->name('search');
+
+Route::middleware(['role:user'])->group(function () {
+    Route::post('booking', [Frontend\BookingController::class, 'store'])->name('booking.store');
+    Route::get('booking/contact_details/{id}', [Frontend\BookingController::class, 'contactDetails'])->name('contact_details');
+    Route::post('save_contact_details', [Frontend\BookingController::class, 'contactDetailsSave'])->name('save_contact_details');
+    Route::get('booking/payment/{id}', [Frontend\BookingController::class, 'payment'])->name('payment');
+    Route::post('booking/payment', [Frontend\BookingController::class, 'paymentSave'])->name('payment.save');
+    Route::get('booking/payment/detail/{id}', [Frontend\BookingController::class, 'paymentDetail'])->name('payment_detail');
+    Route::put('booking/payment/detail/{id}', [Frontend\BookingController::class, 'paymentDetailSave'])->name('payment_detail.save');
+    Route::get('histories', [App\Http\Controllers\Frontend\HistoryController::class, 'index'])->name('histories');
+    Route::resources([
+        'account' => App\Http\Controllers\Frontend\ProfileController::class,
+        'changepassword' => App\Http\Controllers\Frontend\ChangePasswordController::class,
+    ]);
+});
 
 Route::middleware(['role:owner|admin'])->group(function () {
     Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('dashboard');

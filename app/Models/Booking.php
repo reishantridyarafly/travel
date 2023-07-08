@@ -31,6 +31,6 @@ class Booking extends Model
 
     public function contactDetails()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(ContactDetail::class);
     }
 }

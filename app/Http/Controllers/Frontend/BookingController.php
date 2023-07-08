@@ -43,9 +43,6 @@ class BookingController extends Controller
         ]);
 
         // generate id booking
-        $latestBooking = Booking::latest('id')->first();
-        $idBooking = '';
-
         $latestBooking = Booking::orderBy('id', 'desc')->first();
         $idBooking = '';
 
@@ -71,24 +68,15 @@ class BookingController extends Controller
 
     public function contactDetails($id)
     {
-        // get the currently logged in user
-        $user = Auth::user();
-
         // if the user is not logged in, redirect to the login page
-        if (!$user) {
+        if (!Auth::user()) {
             return redirect('login');
         }
 
         // get data by id
         $booking = Booking::find($id);
 
-        // get the currently logged in user
-        $user = Auth::user();
-
-        // fetch data by user id
-        $contact_detail = ContactDetail::where('user_id', $user->id)->get();
-
-        return view('frontend.booking.contact_detail', compact('booking', 'contact_detail'));
+        return view('frontend.booking.contact_detail', compact('booking'));
     }
 
     public function contactDetailsSave(Request $request)
@@ -177,14 +165,10 @@ class BookingController extends Controller
         $total = $request->input('total');
 
         // generate id transaction
-        $latestTransaction = Transaction::latest('id')->first();
-        $idTransaction = '';
-
         $latestTransaction = Transaction::orderBy('id', 'desc')->first();
-        $idTransaction = '';
 
         if ($latestTransaction) {
-            $lastId = intval(substr($latestTransaction->id, 2));
+            $lastId = intval(substr($latestTransaction->id, 3)); // Ubah dari 2 menjadi 3 untuk mengabaikan "INV"
             $newId = $lastId + 1;
             $idTransaction = 'INV' . str_pad($newId, 4, '0', STR_PAD_LEFT);
         } else {
