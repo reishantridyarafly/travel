@@ -22,7 +22,7 @@ Sebelum memulai, pastikan Anda memenuhi persyaratan berikut:
 4. Setelah selesai, pindah ke direktori proyek yang baru dibuat:
    
     ```shell
-    cd repo_laravel
+    cd repo_program
     
 ## Langkah Langkah 2: Instal Dependensi
 
