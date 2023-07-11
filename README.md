@@ -27,15 +27,12 @@ Sebelum memulai, pastikan Anda memenuhi persyaratan berikut:
 ## Langkah Langkah 2: Instal Dependensi
 
 Jalankan perintah berikut untuk menginstal semua dependensi Laravel menggunakan Composer:
-    
-    ```shell
+
     composer install
 
 Perintah ini akan membaca file composer.json dan mengunduh serta menginstal semua paket yang diperlukan untuk menjalankan aplikasi Laravel.
 
 Jika Anda sudah memiliki composer.lock, Anda juga dapat menjalankan perintah berikut untuk memastikan Anda menggunakan versi dependensi yang tepat:
-
-    ```shell
 
     composer install --prefer-dist --no-interaction
 
@@ -43,13 +40,9 @@ Jika Anda sudah memiliki composer.lock, Anda juga dapat menjalankan perintah ber
 
 Salin file .env.example menjadi .env:
 
-    ```shell
-
     cp .env.example .env
 
 Buka file .env menggunakan editor teks favorit Anda dan konfigurasi koneksi database sesuai kebutuhan Anda:
-
-    ```plaintext
 
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -66,17 +59,13 @@ Simpan perubahan pada file .env.
 
 Jalankan perintah berikut untuk membuat tabel database dan memasukkan data awal:
 
-    ```shell
-
     php artisan migrate:fresh --seed
 
 Perintah ini akan menjalankan semua migrasi dan mengisi database dengan data awal jika ada.
 
 ## Langkah 5: Simpan Tautan Penyimpanan
 
-    Jalankan perintah berikut untuk membuat tautan simbolis ke direktori penyimpanan:
-
-    ```shell
+Jalankan perintah berikut untuk membuat tautan simbolis ke direktori penyimpanan:
 
     php artisan storage:link
 
@@ -85,8 +74,6 @@ Ini akan menghubungkan direktori penyimpanan aplikasi ke direktori publik, sehin
 ## Langkah 6: Jalankan Server Pengembangan
 
 Terakhir, jalankan perintah berikut untuk menjalankan server pengembangan Laravel:
-
-    ```shell
 
     php artisan serve
 
