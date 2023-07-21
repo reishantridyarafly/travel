@@ -59,7 +59,7 @@ Simpan perubahan pada file .env.
 
 Jalankan perintah berikut untuk membuat tabel database dan memasukkan data awal:
 
-    php artisan migrate:fresh --seed
+    php artisan migrate --seed
 
 Perintah ini akan menjalankan semua migrasi dan mengisi database dengan data awal jika ada.
 
