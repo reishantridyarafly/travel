@@ -3,8 +3,8 @@
     <div class="container">
         <!-- Logo container-->
         <a class="logo" href="index.html">
-            <img src="{{ asset('frontend') }}/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
-            <img src="{{ asset('frontend') }}/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
+            <img src="{{ asset('default') }}/logo.png" height="44" class="logo-light-mode" alt="logo">
+            <img src="{{ asset('default') }}/logo.png" height="44" class="logo-dark-mode" alt="logo">
         </a>
         <!-- Logo End -->
         <div class="menu-extras">

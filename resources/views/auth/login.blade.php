@@ -12,7 +12,7 @@
                 <div class="card form-signin p-4 rounded shadow">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <a href="{{ url('/') }}"><img src="{{ asset('backend') }}/images/logo-icon.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('default') }}/logo.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
                         <h5 class="mb-3 text-center">Silahkan masuk</h5>
 
                         <div class="form-floating mb-2">

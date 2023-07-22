@@ -12,7 +12,7 @@
                 <div class="card p-4 rounded shadow">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <a href="{{ url('/') }}"><img src="{{ asset('backend') }}/images/logo-icon.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('default') }}/logo.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
                         <h5 class="mb-3 text-center">Daftarkan akun anda</h5>
 
                         <div class="row">

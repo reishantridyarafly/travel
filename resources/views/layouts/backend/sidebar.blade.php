@@ -2,13 +2,7 @@
 <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
     <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
         <div class="sidebar-brand">
-            <a href="">
-                <img src="{{ asset('backend') }}/images/logo-dark.png" height="24" class="logo-light-mode" alt="">
-                <img src="{{ asset('backend') }}/images/logo-light.png" height="24" class="logo-dark-mode" alt="">
-                <span class="sidebar-colored">
-                    <img src="{{ asset('backend') }}/images/logo-light.png" height="24" alt="">
-                </span>
-            </a>
+            <a class="text-center">CV LANGKUY</a>
         </div>
 
         <ul class="sidebar-menu">

@@ -13,7 +13,7 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <a href="{{ url('/') }}"><img src="{{ asset('backend') }}/assets/images/logo-icon.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('default') }}/logo.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
                         <h5 class="mb-3 text-center">Lupa kata sandi</h5>
 
                         @if (session('status'))

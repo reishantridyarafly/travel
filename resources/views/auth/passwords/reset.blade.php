@@ -15,7 +15,7 @@
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <a href="{{ url('/') }}"><img src="{{ asset('backend') }}/assets/images/logo-icon.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('default') }}/logo.png" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
                         <h5 class="mb-3 text-center">Setel Ulang Kata Sandi</h5>
 
                         <div class="form-floating mb-2">

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- favicon -->
-        <link rel="shortcut icon" href="{{ asset('backend') }}/images/favicon.ico" />
+        <link rel="shortcut icon" href="{{ asset('default') }}/logo.png" />
         <!-- Css -->
         <link href="{{ asset('backend') }}/libs/simplebar/simplebar.min.css" rel="stylesheet">
         <!-- Bootstrap Css -->

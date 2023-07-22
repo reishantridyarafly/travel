@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- favicon -->
-        <link rel="shortcut icon" href="{{ asset('backend') }}/images/favicon.ico" />
+        <link rel="shortcut icon" href="{{ asset('default') }}/logo.png" />
         <!-- Css -->
         <link href="{{ asset('backend') }}/libs/simplebar/simplebar.min.css" rel="stylesheet">
         <!-- Bootstrap Css -->
