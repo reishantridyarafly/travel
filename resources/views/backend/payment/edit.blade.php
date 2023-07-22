@@ -2,13 +2,6 @@
 
 @section('title', 'Payment')
 
-@section('css')
-<!-- Datatables -->
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/responsive.bootstrap5.min.css">
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.css"/>
-@endsection
-
 @section('content')
 <div class="container-fluid">
     <div class="layout-specing">
@@ -80,13 +73,4 @@
         <!--end col-->
     </div>
 </div><!--end container-->
-@endsection
-
-@section('javascript')
-<!-- Datatables -->
-<script src="{{ asset('backend') }}/libs/data-tables/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend') }}/libs/data-tables/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{ asset('backend') }}/libs/data-tables/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('backend') }}/libs/data-tables/js/responsive.bootstrap5.min.js"></script>
-<script src="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.js"></script>
 @endsection

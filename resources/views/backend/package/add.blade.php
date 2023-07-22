@@ -3,12 +3,9 @@
 @section('title', 'Paket')
 
 @section('css')
-<!-- Datatables -->
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/data-tables/css/responsive.bootstrap5.min.css">
-<link rel="stylesheet" href="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.css"/>
 <link rel="stylesheet" href="{{ asset('backend') }}/libs/tagsinput/tagsinput.css"/>
 <link rel="stylesheet" href="{{ asset('backend') }}/css/tag-input.css"/>
+<link rel="stylesheet" href="{{ asset('backend') }}/libs/summernote/summernote.min.css"/>
 @endsection
 
 @section('content')
@@ -96,6 +93,17 @@
                                         @enderror
                                     </div>
                                 </div><!--end col-->
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Deskripsi <span class="text-danger">*</span></label>
+                                        <textarea name="description" id="summernote" rows="4" class="form-control @error('description') is-invalid @enderror" placeholder="Deskripsi">{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div><!--end col-->
                             </div><!--end row-->
                             <div class="row">
                                 <div class="col-sm-12">
@@ -113,14 +121,9 @@
 @endsection
 
 @section('javascript')
-<!-- Datatables -->
-<script src="{{ asset('backend') }}/libs/data-tables/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend') }}/libs/data-tables/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{ asset('backend') }}/libs/data-tables/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('backend') }}/libs/data-tables/js/responsive.bootstrap5.min.js"></script>
-<script src="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.js"></script>
 <script src="{{ asset('backend') }}/libs/autoNumeric/autoNumeric.min.js"></script>
 <script src="{{ asset('backend') }}/libs/tagsinput/tagsinput.min.js"></script>
+<script src="{{ asset('backend') }}/libs/summernote/summernote.min.js"></script>
 <script>
     // function preview image
     function previewImg() {
