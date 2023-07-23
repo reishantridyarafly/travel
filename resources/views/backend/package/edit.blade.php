@@ -35,19 +35,12 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Foto <span class="text-danger">*</span></label>
-                                        <div class="row">
-                                            <div class="col-sm-3 mb-2">
-                                                <img src="{{ asset('default/image.png') }}" width="100px" alt="image" class="img-thumbnail img-preview">
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" accept="image/*" onchange="previewImg()">
-                                                @error('image')
-                                                    <span class="invalid-feedback errorimage" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                        <input type="file" name="image[]" id="image" class="form-control @error('image') is-invalid @enderror" multiple>
+                                        @error('image')
+                                            <span class="invalid-feedback errorimage" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div><!--end col-->
                                 <div class="col-md-6">
@@ -126,17 +119,6 @@
 <script src="{{ asset('backend') }}/libs/tagsinput/tagsinput.min.js"></script>
 <script src="{{ asset('backend') }}/libs/summernote/summernote.min.js"></script>
 <script>
-    // function preview image
-    function previewImg() {
-        const logo = document.querySelector('#image');
-        const imgPreview = document.querySelector('.img-preview');
-        const fileImg = new FileReader();
-        fileImg.readAsDataURL(logo.files[0]);
-        fileImg.onload = function(e) {
-            imgPreview.src = e.target.result;
-        }
-    }
-
     // show price to IDR
     new AutoNumeric('#price', {
         currencySymbol : 'Rp ',
