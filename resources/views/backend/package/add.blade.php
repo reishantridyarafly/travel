@@ -75,7 +75,7 @@
                                         @enderror
                                     </div>
                                 </div><!--end col-->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Benefit <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control @error('benefits') is-invalid @enderror" name="benefits" id="benefits" value="{{ old('benefits') }}" data-role="tagsinput" autocomplete="benefits">
@@ -84,6 +84,29 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
+                                    </div>
+                                </div><!--end col-->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Durasi <span class="text-danger">*</span></label>
+                                        <div class="row">
+                                            <div class="col-7 col-sm-6 mb-2">
+                                                <input name="duration" id="duration" type="number" class="form-control @error('duration') is-invalid @enderror" placeholder="Durasi" value="{{ old('duration') }}">
+                                                @error('duration')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-5 col-sm-6">
+                                                <p class="pt-2">Hari</p>
+                                            </div>
+                                            @error('unit')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div><!--end col-->
                                 <div class="col-md-12">
@@ -118,6 +141,10 @@
 <script src="{{ asset('backend') }}/libs/tagsinput/tagsinput.min.js"></script>
 <script src="{{ asset('backend') }}/libs/summernote/summernote.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+
     // show price to IDR
     new AutoNumeric('#price', {
         currencySymbol : 'Rp ',

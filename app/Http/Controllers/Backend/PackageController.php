@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Package;
 use App\Models\Benefit;
+use App\Models\Image;
 
 class PackageController extends Controller
 {
@@ -32,31 +33,27 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|max:2048',
+            'image.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|max:255',
             'location' => 'required|max:255',
             'price' => 'required|max:11',
             'benefits' => 'required',
+            'duration' => 'required|max:12',
+            'description' => 'required',
         ]);
-
-        // process upload image
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/packages');
-            $imageName = basename($imagePath);
-        } else {
-            $imageName = '';
-        }
 
         // remove currency symbol and thousand separators from price field
         $price = str_replace(['Rp ', '.', ','], ['', '', ''], $request->price);
 
         // insert to table packages
         $packages = Package::create([
-            'image' => $imageName,
             'name' => $request->name,
             'slug'  => Str::slug($request->name, '-'),
             'location' => $request->location,
             'price' => $price,
+            'duration' => $request->duration,
+            'description' => $request->description,
         ]);
 
         // split benefits into array
@@ -68,6 +65,19 @@ class PackageController extends Controller
                 'name' => $benefit,
                 'package_id' => $packages->id,
             ]);
+        }
+
+        // process upload image multiple
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                $path = basename($image->store('public/packages'));
+
+                Image::create([
+                    'path' => $path,
+                    'package_id' => $packages->id,
+                ]);
+            }
         }
 
         return redirect('packages')->with('message', 'Paket berhasil ditambahkan!');
@@ -85,35 +95,30 @@ class PackageController extends Controller
     {
         // validation
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'max:2048',
+            'image.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|max:255',
             'location' => 'required|max:255',
             'price' => 'required|max:11',
             'benefits' => 'required',
+            'duration' => 'required',
+            'description' => 'required',
         ]);
 
         // get data find or fail by id
         $package = Package::findOrFail($id);
-
-        // process upload image
-        if ($request->hasFile('image')) {
-            Storage::delete('public/packages/' . $package->image);
-            $imagePath = $request->file('image')->store('public/packages');
-            $imageName = basename($imagePath);
-        } else {
-            $imageName = $package->image;
-        }
 
         // remove currency symbol and thousand separators from price field
         $price = str_replace(['Rp ', '.', ','], ['', '', ''], $request->price);
 
         // update to table packages
         $package->update([
-            'image' => $imageName,
             'name' => $request->name,
             'slug'  => Str::slug($request->name, '-'),
             'location' => $request->location,
             'price' => $price,
+            'duration' => $request->duration,
+            'description' => $request->description,
         ]);
 
         // split benefits into array
@@ -130,6 +135,24 @@ class PackageController extends Controller
             ]);
         }
 
+        // process upload image multiple
+        if ($request->hasFile('image')) {
+            foreach ($package->images as $image) {
+                Storage::delete('public/packages/' . $image->path);
+                $image->delete();
+            }
+
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                $path = basename($image->store('public/packages'));
+
+                Image::create([
+                    'path' => $path,
+                    'package_id' => $package->id,
+                ]);
+            }
+        }
+
         return redirect('packages')->with('message', 'Paket berhasil diubah!');
     }
 
@@ -139,10 +162,10 @@ class PackageController extends Controller
         $package = Package::findOrFail($id);
 
         // process delete image
-        if ($package->image) {
-            Storage::delete('public/packages/' . $package->image);
+        foreach ($package->images as $image) {
+            Storage::delete('public/packages/' . $image->path);
+            $image->delete();
         }
-
         // delete data
         $package->delete();
 

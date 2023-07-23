@@ -50,7 +50,15 @@
                                     <tr>
                                         <th class="text-center p-3" style="width: 5%;">{{ $loop->iteration }}</th>
                                         <td>
-                                            <img src="{{ asset('storage/packages/' . $package->image) }}" width="70px" class="img-fluid" alt="image-package">
+                                            <div class="row">
+                                                @if ($package->images->count() > 0)
+                                                    @foreach ($package->images as $image)
+                                                        <div class="col-12 col-md-6">
+                                                            <img src="{{ asset('storage/packages/' . $image->path) }}" width="100px" class="img-fluid mb-2" alt="package">
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="p-3">{{ $package->name }}</td>
                                         <td class="p-3">{{ $package->location }}</td>
