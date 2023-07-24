@@ -108,7 +108,14 @@
                 <div class="col-lg-4">
                     <div class="card pricing pricing-primary border-0 shadow position-relative overflow-hidden m-2">
                         <div class="shop-image position-relative overflow-hidden shadow">
-                            <a href="shop-product-detail.html"><img src="{{ asset('storage/packages/' . $package->image) }}" class="img-fluid" alt="benefit"></a>
+                            <a href="{{ route('detail', $package->slug) }}">
+                                @if ($package->images->count() > 0)
+                                    @foreach ($package->images as $image)
+                                        <img src="{{ asset('storage/packages/' . $image->path ) }}" class="img-fluid" alt="package">
+                                        @break
+                                    @endforeach
+                                @endif
+                            </a>
                         </div>
                         <div class="card-body content p-4">
                             <a href="javascript:void(0)" class="text-dark product-name h6">{{ $package->name }}</a>
@@ -123,7 +130,7 @@
                                     <li class="h6 text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>{{ $benefit->name }}</li>
                                 @endforeach
                             </ul>
-                            <a href="{{ route('booking') }}" class="btn btn-primary mt-4">Booking</a>
+                            <a href="{{ route('detail', $package->slug) }}" class="btn btn-primary mt-4">Booking</a>
                         </div>
                     </div><!--end items-->
                 </div>

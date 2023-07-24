@@ -30,4 +30,11 @@ class HomeController extends Controller
 
         return view('frontend.home.index', compact('packages'));
     }
+
+    public function show($slug)
+    {
+        $package = Package::where('slug', $slug)->firstOrFail();
+
+        return view('frontend.home.detail', compact('package'));
+    }
 }

@@ -26,19 +26,15 @@
             @guest
                 @if (Route::has('login'))
                 <li class="list-inline-item mb-0">
-                    <a href="{{ route('login') }}" class="{{ Request::routeIs('/') ? 'login-btn-primary' : ''}} btn btn-primary">Masuk</a>
-                    @if (Request::routeIs('/'))
-                        <a href="{{ route('login') }}" class="login-btn-light btn btn-light">Masuk</a>
-                    @endif
+                    <a href="{{ route('login') }}" class="login-btn-primary btn btn-primary">Masuk</a>
+                    <a href="{{ route('login') }}" class="login-btn-light btn btn-light">Masuk</a>
                 </li>
                 @endif
             @else
                 <li class="list-inline-item mb-0">
                     <div class="dropdown dropdown-primary">
-                        <button type="button" class="{{ Request::routeIs('/') ? 'login-btn-primary' : ''}} btn btn-icon btn-pills btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
-                        @if (Request::routeIs('/'))
-                            <button type="button" class="login-btn-light btn btn-icon btn-pills btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
-                        @endif
+                        <button type="button" class="login-btn-primary btn btn-icon btn-pills btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
+                        <button type="button" class="login-btn-light btn btn-icon btn-pills btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="user" class="icons"></i></button>
                         <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3" style="width: 200px;">
                             @if (Auth::user()->hasRole('admin'))
                                 <a class="dropdown-item text-dark" href="{{ route('dashboard') }}"><i class="uil uil-estate align-middle me-1"></i> Dashboard</a>
@@ -62,7 +58,7 @@
 
         <div id="navigation">
             <!-- Navigation Menu-->
-            <ul class="navigation-menu {{ Request::routeIs('/') ? 'nav-light' : '' }}">
+            <ul class="navigation-menu nav-light">
                 <li><a href="{{ route('/') }}" class="sub-menu-item {{ Request::is('/') ? 'active' : '' }}">Beranda</a></li>
                 <li><a href="#about" class="sub-menu-item {{ Request::is('#about') ? 'active' : '' }}">Tentang</a></li>
                 <li><a href="#package" class="sub-menu-item {{ Request::is('#package') ? 'active' : '' }}">Paket</a></li>

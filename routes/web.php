@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('/');
 Route::get('booking', [Frontend\BookingController::class, 'index'])->name('booking');
 Route::get('search', [Frontend\HomeController::class, 'search'])->name('search');
+Route::get('detail/{slug}', [Frontend\HomeController::class, 'show'])->name('detail');
 
 Route::middleware(['role:user'])->group(function () {
     Route::post('booking', [Frontend\BookingController::class, 'store'])->name('booking.store');
