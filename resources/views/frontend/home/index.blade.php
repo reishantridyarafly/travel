@@ -111,7 +111,7 @@
                             <a href="{{ route('detail', $package->slug) }}">
                                 @if ($package->images->count() > 0)
                                     @foreach ($package->images as $image)
-                                        <img src="{{ asset('storage/packages/' . $image->path ) }}" class="img-fluid" alt="package">
+                                        <img src="{{ asset('storage/packages/' . $image->path ) }}" class="img-fluid" style="height: 400px; width: 350px;" alt="package">
                                         @break
                                     @endforeach
                                 @endif
@@ -120,17 +120,13 @@
                         <div class="card-body content p-4">
                             <a href="javascript:void(0)" class="text-dark product-name h6">{{ $package->name }}</a>
                             <ul class="list-unstyled text-muted mt-2 mb-0">
-                                <li class="list-inline-item me-3"><i class="uil uil-map-marker me-1"></i>{{ $package->location }}</li>
+                                <li class="list-inline-item me-2"><i class="uil uil-map-marker me-1"></i>{{ $package->location }}</li>
+                                <li class="list-inline-item"><i class="uil uil-calender me-1"></i>Durasi {{ $package->duration }} Hari</li>
                             </ul>
                             <ul class="list-unstyled d-flex justify-content-between mt-2 mb-2">
                                 <li class="list-inline-item"><b>Rp {{ number_format($package->price, 0, ',', '.') }}</b></li>
                             </ul>
-                            <ul class="list-unstyled mb-0 ps-0">
-                                @foreach ($package->benefits as $benefit)
-                                    <li class="h6 text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>{{ $benefit->name }}</li>
-                                @endforeach
-                            </ul>
-                            <a href="{{ route('detail', $package->slug) }}" class="btn btn-primary mt-4">Booking</a>
+                            <a href="{{ route('detail', $package->slug) }}" class="btn btn-primary mt-4">Detail</a>
                         </div>
                     </div><!--end items-->
                 </div>
