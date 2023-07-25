@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('path');
             $table->unsignedBigInteger('package_id')->nullable();
             $table->timestamps();
-            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

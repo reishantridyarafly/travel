@@ -53,6 +53,11 @@ class User extends Authenticatable
 
     public function contactDetails()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(ContactDetail::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
     }
 }

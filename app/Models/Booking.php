@@ -33,4 +33,9 @@ class Booking extends Model
     {
         return $this->hasMany(ContactDetail::class);
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

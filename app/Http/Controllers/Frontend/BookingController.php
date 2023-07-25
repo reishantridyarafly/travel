@@ -35,11 +35,9 @@ class BookingController extends Controller
         $request->validate([
             'package' => 'required',
             'start_date' => 'required',
-            'end_date' => 'required',
         ],[
             'package.required' => 'Paket harus dipilih.',
             'start_date.required' => 'Tanggal mulai harus diisi.',
-            'end_date.required' => 'Tanggal selesai harus diisi.',
         ]);
 
         // generate id booking
@@ -54,13 +52,23 @@ class BookingController extends Controller
             $idBooking = 'BK0001';
         }
 
+        // get package by request
+        $package = Package::find($request->package);
+
+        // get duration
+        $duration = $package->duration;
+
+        // Calculates end date based on start date and duration
+        $start_date = Carbon::parse($request->start_date);
+        $end_date = $start_date->copy()->addDays($duration);
+
         // insert to tabel bookings
         Booking::create([
             'id' => $idBooking,
             'package_id' => $request->package,
             'user_id' => $user->id,
             'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'end_date' => $end_date,
         ]);
 
         return redirect()->route('contact_details', ['id' => $idBooking]);
@@ -168,7 +176,7 @@ class BookingController extends Controller
         $latestTransaction = Transaction::orderBy('id', 'desc')->first();
 
         if ($latestTransaction) {
-            $lastId = intval(substr($latestTransaction->id, 3)); // Ubah dari 2 menjadi 3 untuk mengabaikan "INV"
+            $lastId = intval(substr($latestTransaction->id, 3));
             $newId = $lastId + 1;
             $idTransaction = 'INV' . str_pad($newId, 4, '0', STR_PAD_LEFT);
         } else {
@@ -186,6 +194,34 @@ class BookingController extends Controller
         ]);
 
         return redirect()->route('payment_detail', ['id' => $booking]);
+    }
+
+    public function paymentCancel(Request $request)
+    {
+        $booking = $request->input('booking');
+        $total = $request->input('total');
+
+        // generate id transaction
+        $latestTransaction = Transaction::orderBy('id', 'desc')->first();
+
+        if ($latestTransaction) {
+            $lastId = intval(substr($latestTransaction->id, 3));
+            $newId = $lastId + 1;
+            $idTransaction = 'INV' . str_pad($newId, 4, '0', STR_PAD_LEFT);
+        } else {
+            $idTransaction = 'INV0001';
+        }
+
+        $expired = Carbon::now()->addDay();
+
+        Transaction::create([
+            'id' => $idTransaction,
+            'booking_id' => $booking,
+            'total' => $total,
+            'status' => 'cancel',
+        ]);
+
+        return redirect('histories')->with('message', 'Pesanan anda berhasil dibatalkan!');
     }
 
     public function paymentDetail($id)
@@ -206,19 +242,9 @@ class BookingController extends Controller
 
         $payment = Payment::where('name_bank', $transaction->name_bank)->first();
 
-        $currentDateTime = Carbon::now();
-        $currentDateTimeFormatted = $currentDateTime->format('H:i:s');
-
-        $expiredDateTime = Carbon::parse($transaction->expired);
-        $remainingTime = $currentDateTime->diff($expiredDateTime);
-        $remainingHours = $remainingTime->h;
-        $remainingMinutes = $remainingTime->i;
-        $remainingSeconds = $remainingTime->s;
 
         return view('frontend.booking.payment_detail', compact('transaction', 'booking', 'payment',
-                                                        'contactDetail','currentDateTimeFormatted',
-                                                        'remainingHours', 'remainingMinutes',
-                                                        'remainingSeconds'));
+                                                        'contactDetail'));
     }
 
     public function paymentDetailSave(Request $request,$id)
@@ -245,6 +271,28 @@ class BookingController extends Controller
             'photo_evidence' => $imageName,
         ]);
 
-        return redirect('booking')->with('message', 'Konfirmasi anda berhasil!');
+        return redirect('histories')->with('success', 'Konfirmasi anda berhasil!');
+    }
+
+    public function paymentDetailCancel($id)
+    {
+        $transaction = Transaction::find($id);
+
+        $transaction->update([
+            'status' => 'cancel',
+        ]);
+
+        return redirect('histories')->with('success', 'Pesanan anda berhasil dibatalkan!');
+    }
+
+    public function cancel($id)
+    {
+        $transaction = Transaction::where('booking_id', $id)->first();
+
+        $transaction->update([
+            'status' => 'cancel',
+        ]);
+
+        return redirect('histories')->with('success', 'Pesanan anda berhasil dibatalkan!');
     }
 }

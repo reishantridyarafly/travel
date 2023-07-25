@@ -1,12 +1,13 @@
 @extends('layouts.frontend.main')
 
 @section('content')
-<section class="bg-half-170 bg-light d-table w-100">
+<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('frontend') }}/images/real/1.jpg') center center;">
+    <div class="bg-overlay"></div>
     <div class="container">
         <div class="row mt-5 justify-content-center">
             <div class="col-lg-12 text-center">
                 <div class="pages-heading">
-                    <h4 class="title mb-0"> Booking </h4>
+                    <h4 class="title text-white mb-0"> Booking </h4>
                 </div>
             </div><!--end col-->
         </div><!--end row-->

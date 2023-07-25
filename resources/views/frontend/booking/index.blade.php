@@ -75,18 +75,6 @@
                                             @enderror
                                         </div>
                                     </div><!--end col-->
-
-                                    <div class="col-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tanggal selesai <span class="text-danger">*</span></label>
-                                            <input name="end_date" id="end_date" type="date" class="form-control @error('end_date') is-invalid @enderror" placeholder="Tanggal selesai :">
-                                            @error('end_date')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div><!--end col-->
                                 </div>
                                 <div class="row">
                                     <div class="col-12">

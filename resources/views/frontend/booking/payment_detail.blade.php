@@ -1,12 +1,13 @@
 @extends('layouts.frontend.main')
 
 @section('content')
-<section class="bg-half-170 bg-light d-table w-100">
+<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('frontend') }}/images/real/1.jpg') center center;">
+    <div class="bg-overlay"></div>
     <div class="container">
         <div class="row mt-5 justify-content-center">
             <div class="col-lg-12 text-center">
                 <div class="pages-heading">
-                    <h4 class="title mb-0"> Pembayaran </h4>
+                    <h4 class="title text-white mb-0"> Pembayaran </h4>
                 </div>
             </div><!--end col-->
         </div><!--end row-->
@@ -47,8 +48,8 @@
                                         <h5 class="mb-3">1. Selesaikan Pembayaran Sebelum</h5>
                                         <div class="card shadow">
                                             <div class="card-body">
-                                                <h6>Hari ini, {{ $currentDateTimeFormatted }} </h6>
-                                                <p>Selesaikan pembayaran dalam {{ $remainingHours }} jam {{ $remainingMinutes }} menit {{ $remainingSeconds }} detik</p>
+                                                <h6>Hari ini, <span id="jam-sekarang"></span></h6>
+                                                <p>Selesaikan pembayaran dalam <span id="countdown"></span></p>
                                             </div>
                                         </div>
                                         <h5 class="mb-3 mt-3">2. Mohon Transfer Ke</h5>
@@ -105,6 +106,17 @@
                                     </div><!--end col-->
                                 </div><!--end row-->
                             </form>
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <form action="{{ route('payment_detail.cancel', $transaction->id) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-danger">Batalkan</button>
+                                        </div>
+                                    </form>
+                                </div><!--end col-->
+                            </div><!--end row-->
                         </div><!--end custom-form-->
                     </div>
                 </div>
@@ -148,4 +160,39 @@
     </div><!--end container-->
 </section>
 <!-- End -->
+@endsection
+
+@section('javascript')
+<script>
+    var serverTime = "{{ date('Y-m-d H:i:s') }}";
+
+    var currentTime = new Date(serverTime).getTime();
+
+    var intervalJam = setInterval(function() {
+        currentTime += 1000;
+        var jamSekarang = new Date(currentTime);
+        document.getElementById("jam-sekarang").innerText = jamSekarang.toLocaleTimeString();
+    }, 1000);
+
+    var expiredTime = "{{ $transaction->expired_at }}";
+
+    var expiredDateTime = new Date(expiredTime).getTime();
+
+    var intervalCountdown = setInterval(function() {
+        var now = new Date().getTime();
+        var selisihWaktu = expiredDateTime - now;
+
+        var jam = Math.floor(selisihWaktu / (1000 * 60 * 60));
+        var menit = Math.floor((selisihWaktu % (1000 * 60 * 60)) / (1000 * 60));
+        var detik = Math.floor((selisihWaktu % (1000 * 60)) / 1000);
+
+        var countdownText = jam + " jam " + menit + " menit " + detik + " detik";
+        document.getElementById("countdown").innerText = countdownText;
+
+        if (selisihWaktu < 0) {
+            clearInterval(intervalCountdown);
+            document.getElementById("countdown").innerText = "Waktu telah habis";
+        }
+    }, 1000);
+</script>
 @endsection
