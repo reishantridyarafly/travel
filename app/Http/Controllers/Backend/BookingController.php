@@ -28,7 +28,11 @@ class BookingController extends Controller
     public function failed()
     {
         // get data
-        $transactions = Transaction::where('status', 'failed')->orWhere('status', 'expired')->orderBy('created_at', 'desc')->get();
+        $transactions = Transaction::where('status', 'failed')
+                                ->orWhere('status', 'expired')
+                                ->orWhere('status', 'cancel')
+                                ->orderBy('created_at', 'desc')
+                                ->get();
 
         return view('backend.booking.index', compact('transactions'));
     }
