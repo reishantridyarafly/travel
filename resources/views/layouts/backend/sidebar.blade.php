@@ -51,12 +51,12 @@
             <li class="{{ Request::is('payments*') ? 'active' : '' }}"><a href="{{ route('payments.index') }}"><i class="uil uil-credit-card me-2"></i>Payment</a></li>
             @endif
             <li class="{{ Request::is('reports') ? 'active' : '' }}"><a href="{{ route('reports') }}"><i class="uil uil-folder me-2"></i>Laporan</a></li>
-            <li class="sidebar-dropdown {{ Request::is('akun*') ? 'active' : '' }}">
+            <li class="sidebar-dropdown {{ Request::is('profile*') || Request::is('change-password*') ? 'active' : '' }}">
                 <a href="javascript:void(0)"><i class="uil uil-user me-2"></i>Akun</a>
-                <div class="sidebar-submenu" {{ Request::is('akun*') ? 'style=display:block;' : '' }}>
+                <div class="sidebar-submenu" {{ Request::is('profile*') || Request::is('change-password*') ? 'style=display:block;' : '' }}>
                     <ul>
-                        <li class="{{ Request::is('akun/profile*') ? 'active' : '' }}"><a href="{{ route('profile.index') }}">Profil</a></li>
-                        <li class="{{ Request::is('akun/change-password*') ? 'active' : '' }}"><a href="{{ route('change-password.index') }}">Ganti Kata Sandi</a></li>
+                        <li class="{{ Request::is('profile*') ? 'active' : '' }}"><a href="{{ route('profile.index') }}">Profil</a></li>
+                        <li class="{{ Request::is('change-password*') ? 'active' : '' }}"><a href="{{ route('change-password.index') }}">Ganti Kata Sandi</a></li>
                     </ul>
                 </div>
             </li>
