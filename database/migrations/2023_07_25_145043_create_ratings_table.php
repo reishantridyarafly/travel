@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('booking_id');
+            $table->string('booking_id');
             $table->unsignedBigInteger('package_id');
             $table->unsignedBigInteger('user_id');
             $table->string('question');
