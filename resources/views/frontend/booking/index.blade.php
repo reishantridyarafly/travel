@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('frontend') }}/images/real/1.jpg') center center;">
+<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('default') }}/1.jpg') center center;">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row mt-5 justify-content-center">
@@ -53,7 +53,7 @@
                                             <select name="package" id="package" class="form-control select2 @error('package') is-invalid @enderror" data-search="true">
                                                 <option value="">Pilih Paket</option>
                                                 @foreach ($packages as $package)
-                                                    <option value="{{ $package->id }}">{{ $package->name }}</option>
+                                                    <option value="{{ $package->id }}">{{ $package->name }} - {{ $package->duration }} Hari</option>
                                                 @endforeach
                                             </select>
                                             @error('package')

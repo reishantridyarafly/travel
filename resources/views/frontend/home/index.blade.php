@@ -76,14 +76,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-5 mt-4 pt-2 mt-sm-0 pt-sm-0">
                     <div class="position-relative">
-                        <img src="{{ asset('frontend') }}/images/real/1.jpg" class="rounded img-fluid mx-auto d-block" alt="about">
+                        <img src="{{ asset('default') }}/1.jpg" class="rounded img-fluid mx-auto d-block" alt="about">
                     </div>
                 </div><!--end col-->
 
                 <div class="col-lg-7 col-md-7 mt-4 pt-2 mt-sm-0 pt-sm-0">
                     <div class="section-title ms-lg-4">
                         <h4 class="title mb-4">CV Langkuy</h4>
-                        <p class="text-muted">Start working with <span class="text-primary fw-bold">Landrick</span> that can provide everything you need to generate awareness, drive traffic, connect. Dummy text is text that is used in the publishing industry or by web designers to occupy the space which will later be filled with 'real' content. This is required when, for example, the final text is not yet available. Dummy texts have been in use by typesetters since the 16th century.</p>
+                        <p class="text-muted">Start working with <span class="text-primary fw-bold">CV Langkuy</span> that can provide everything you need to generate awareness, drive traffic, connect. Dummy text is text that is used in the publishing industry or by web designers to occupy the space which will later be filled with 'real' content. This is required when, for example, the final text is not yet available. Dummy texts have been in use by typesetters since the 16th century.</p>
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
@@ -143,7 +143,7 @@
 <script>
     easy_background("#home",
         {
-            slide: ["{{ asset('frontend') }}/images/real/1.jpg", "{{ asset('frontend') }}/images/real/2.jpg", "{{ asset('frontend') }}/images/real/3.jpg"],
+            slide: ["{{ asset('default') }}/1.jpg", "{{ asset('default') }}/2.jpg", "{{ asset('default') }}/3.jpg"],
             delay: [2000, 2000, 2000]
         }
     );

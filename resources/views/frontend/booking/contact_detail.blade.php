@@ -1,7 +1,7 @@
 @extends('layouts.frontend.main')
 
 @section('content')
-<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('frontend') }}/images/real/1.jpg') center center;">
+<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('default') }}/1.jpg') center center;">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row mt-5 justify-content-center">

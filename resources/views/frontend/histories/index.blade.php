@@ -7,7 +7,7 @@
 
 @section('content')
 <!-- Hero Start -->
-<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('frontend') }}/images/real/1.jpg') center center;">
+<section class="bg-half-170 d-table w-100" style="background: url('{{ asset('default') }}/1.jpg') center center;">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row mt-5 justify-content-center">
@@ -111,6 +111,7 @@
 </section><!--end section-->
 <!-- End -->
 <!-- Modal Detail -->
+@if ($bookings->count() > 0)
 @foreach ($bookings as $booking)
 <div class="modal fade" id="detail{{ $booking->id }}" tabindex="-1" aria-labelledby="LoginForm-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -857,6 +858,7 @@
     </div>
 </div>
 @endforeach
+@endif
 <!-- Modal Question 15 End -->
 @endsection
 
@@ -879,9 +881,10 @@
     let currentRating = 0;
     let currentQuestion = 1;
     const totalQuestions = 15;
+    const bookingId = document.getElementById('booking_id').value;
 
     function setRating(rating, questionNumber) {
-        const stars = document.querySelectorAll(`#question${questionNumber}{{ $booking->id }} .icon-large`);
+        const stars = document.querySelectorAll(`#question${questionNumber}${bookingId} .icon-large`);
 
         // Highlight the selected stars
         for (let i = 0; i < rating; i++) {
@@ -935,10 +938,10 @@
                     currentQuestion++;
                     if (currentQuestion <= totalQuestions) {
                         // Hide the current question modal
-                        $('#question' + (currentQuestion - 1) + '{{ $booking->id }}').modal('hide');
+                        $(`#question${currentQuestion - 1}${bookingId}`).modal('hide');
 
                         // Show the next question modal
-                        $('#question' + currentQuestion + '{{ $booking->id }}').modal('show');
+                        $(`#question${currentQuestion}${bookingId}`).modal('show');
                     } else {
                         // If all questions are answered, show SweetAlert
                         Swal.fire({
@@ -979,7 +982,10 @@
         // Check if event.relatedTarget exists before accessing its attributes
         if (event.relatedTarget) {
             const modalId = event.relatedTarget.getAttribute('data-bs-target');
-            const isFirstModal = modalId === '#question1{{ $booking->id }}';
+            const bookingId = document.getElementById('booking_id').value;
+
+            // Use bookingId instead of $booking->id
+            const isFirstModal = modalId === `#question1${bookingId}`;
             $('.btn-cancel').toggle(isFirstModal);
         }
     });
