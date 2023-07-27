@@ -41,7 +41,7 @@ Route::middleware(['role:user'])->group(function () {
     Route::post('rating', [Frontend\RatingController::class, 'store'])->name('rating');
 });
 
-Route::middleware(['role:owner|admin'])->group(function () {
+Route::middleware(['role:admin'])->group(function () {
     Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('dashboard');
     Route::resources([
         'packages' => Backend\PackageController::class,
@@ -63,7 +63,7 @@ Route::middleware(['role:owner|admin'])->group(function () {
     Route::get('ratings/question4', [App\Http\Controllers\Backend\RatingController::class, 'question4'])->name('ratings.question4');
     Route::get('ratings/question5', [App\Http\Controllers\Backend\RatingController::class, 'question5'])->name('ratings.question5');
     Route::get('ratings/question6', [App\Http\Controllers\Backend\RatingController::class, 'question6'])->name('ratings.question6');
-    Route::get('ratings/question7', [App\Http\Controllers\Backend\RatingController::class, 'question7'])->name('ratings.question7');Route::get('ratings/question1', [App\Http\Controllers\Backend\RatingController::class, 'question1'])->name('ratings.question1');
+    Route::get('ratings/question7', [App\Http\Controllers\Backend\RatingController::class, 'question7'])->name('ratings.question7');
     Route::get('ratings/question8', [App\Http\Controllers\Backend\RatingController::class, 'question8'])->name('ratings.question8');
     Route::get('ratings/question9', [App\Http\Controllers\Backend\RatingController::class, 'question9'])->name('ratings.question9');
     Route::get('ratings/question10', [App\Http\Controllers\Backend\RatingController::class, 'question10'])->name('ratings.question10');
