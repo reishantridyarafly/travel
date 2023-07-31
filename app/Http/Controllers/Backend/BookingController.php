@@ -9,31 +9,11 @@ use App\Models\Booking;
 
 class BookingController extends Controller
 {
-    public function pending()
+    
+    public function index()
     {
         // get data
-        $transactions = Transaction::where('status', 'pending')->orderBy('created_at', 'desc')->get();
-
-        return view('backend.booking.index', compact('transactions'));
-    }
-
-    public function success()
-    {
-        // get data
-        $transactions = Transaction::where('status', 'success')->orderBy('created_at', 'desc')->get();
-
-        return view('backend.booking.index', compact('transactions'));
-    }
-
-    public function failed()
-    {
-        // get data
-        $transactions = Transaction::where('status', 'failed')
-                                ->orWhere('status', 'expired')
-                                ->orWhere('status', 'cancel')
-                                ->orderBy('created_at', 'desc')
-                                ->get();
-
+        $transactions = Transaction::orderBy('created_at', 'desc')->get();
         return view('backend.booking.index', compact('transactions'));
     }
 

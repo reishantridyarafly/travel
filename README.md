@@ -17,12 +17,12 @@ Sebelum memulai, pastikan Anda memenuhi persyaratan berikut:
 3. Jalankan perintah berikut untuk mengkloning repositori:
 
    ```shell
-   git clone https://github.com/AliAbdurohman16/travel.git
+   git clone https://github.com/Reishan10/travel.git
    
 4. Setelah selesai, pindah ke direktori proyek yang baru dibuat:
    
     ```shell
-    cd repo_program
+    cd travel
     
 ## Langkah Langkah 2: Instal Dependensi
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend;
 use App\Http\Controllers\Frontend;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::middleware(['role:user'])->group(function () {
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('dashboard');
+    
     Route::resources([
         'packages' => Backend\PackageController::class,
         'customers' => Backend\CustomerController::class,
@@ -50,13 +52,14 @@ Route::middleware(['role:admin'])->group(function () {
         'profile' => Backend\ProfileController::class,
         'change-password' => Backend\ChangePasswordController::class,
     ]);
-    Route::get('booking_pending', [Backend\BookingController::class, 'pending'])->name('booking_pending');
-    Route::get('booking_success', [Backend\BookingController::class, 'success'])->name('booking_success');
-    Route::get('booking_failed', [Backend\BookingController::class, 'failed'])->name('booking_failed');
+
+    Route::get('transaksi', [Backend\BookingController::class, 'index'])->name('transaksi.index');
     Route::post('booking_validated', [Backend\BookingController::class, 'validated'])->name('booking_validated');
     Route::post('booking_rejected', [Backend\BookingController::class, 'rejected'])->name('booking_rejected');
+
     Route::get('reports', [App\Http\Controllers\Backend\ReportController::class, 'index'])->name('reports');
     Route::get('reports/data', [App\Http\Controllers\Backend\ReportController::class, 'data'])->name('reports.data');
+
     Route::get('ratings/question1', [App\Http\Controllers\Backend\RatingController::class, 'question1'])->name('ratings.question1');
     Route::get('ratings/question2', [App\Http\Controllers\Backend\RatingController::class, 'question2'])->name('ratings.question2');
     Route::get('ratings/question3', [App\Http\Controllers\Backend\RatingController::class, 'question3'])->name('ratings.question3');

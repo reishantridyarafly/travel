@@ -172,8 +172,8 @@
                                 <table class="table mb-0 table-center">
                                     <tbody>
                                         <tr>
-                                            <td><img src="{{ asset('storage/packages/' . $booking->package->image) }}" width="50px" alt="paket"></td>
-                                            <td class="fw-bold">{{ $booking->package->name }}</td>
+                                            {{-- <td><img src="{{ asset('storage/packages/' . $booking->package->images) }}" width="50px" alt="paket"></td> --}}
+                                            <td class="fw-bold" colspan="2">{{ $booking->package->name }}</td>
                                         </tr>
                                         <tr>
                                             <td width="10%">Tanggal Mulai</td>
