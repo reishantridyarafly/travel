@@ -1,6 +1,6 @@
 @extends('layouts.backend.main')
 
-@section('title', 'Transaksi')
+@section('title', 'Booking')
 
 @section('css')
     <!-- Datatables -->
@@ -14,11 +14,11 @@
     <div class="container-fluid">
         <div class="layout-specing">
             <div class="d-md-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Transaksi</h5>
+                <h5 class="mb-0">Booking</h5>
 
                 <nav aria-label="breadcrumb" class="d-inline-block">
                     <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                        <li class="breadcrumb-item text-capitalize"><a href="#">Transaksi</a></li>
+                        <li class="breadcrumb-item text-capitalize"><a href="#">Booking</a></li>
                         <li class="breadcrumb-item text-capitalize active" aria-current="page">list</li>
                     </ul>
                 </nav>
@@ -57,7 +57,7 @@
                                             <td class="p-3">{{ $transaction->booking->package->name }}</td>
                                             <td class="p-3">
                                                 @if ($transaction->booking->contactDetails && $transaction->booking->contactDetails->isNotEmpty())
-                                                    {{ $transaction->booking->contactDetails->first()->fullname }}
+                                                    {{ $transaction->booking->user->name }}
                                                 @endif
                                             </td>
                                             <td class="p-3">
@@ -152,21 +152,7 @@
                                                 </div>
                                                 <div class="col-6 mb-2">
                                                     <span
-                                                        class="fw-bold">{{ $transaction->booking->contactDetails->first()->fullname }}</span>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <span>No. Identitas</span>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <span
-                                                        class="fw-bold">{{ $transaction->booking->contactDetails->first()->no_identity }}</span>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <span>Tipe Identitas</span>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <span
-                                                        class="fw-bold">{{ $transaction->booking->contactDetails->first()->type_identity }}</span>
+                                                        class="fw-bold">{{ $transaction->booking->user->name }}</span>
                                                 </div>
                                             @endif
                                             <div class="col-6 mb-2">
@@ -211,21 +197,14 @@
                                                 </div>
                                                 <div class="col-6 mb-2">
                                                     <span
-                                                        class="fw-bold">{{ $transaction->booking->contactDetails->first()->telephone }}</span>
+                                                        class="fw-bold">{{ $transaction->booking->user->no_hp }}</span>
                                                 </div>
                                                 <div class="col-6 mb-2">
                                                     <span>Email</span>
                                                 </div>
                                                 <div class="col-6 mb-2">
                                                     <span
-                                                        class="fw-bold">{{ $transaction->booking->contactDetails->first()->email }}</span>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <span>Jenis Kelamin</span>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <span
-                                                        class="fw-bold">{{ $transaction->booking->contactDetails->first()->gender }}</span>
+                                                        class="fw-bold">{{ $transaction->booking->user->email }}</span>
                                                 </div>
                                             @endif
                                             <div class="col-6 mb-2">
@@ -254,18 +233,7 @@
                                                     <td class="text-muted">Belum Upload Bukti Pembayaran</td>
                                                 @endif
                                             </div>
-                                            <div class="col-6 mb-2">
-                                                <span>Foto Identitas</span>
-                                            </div>
-                                            <div class="col-6 mb-2">
-                                                @if ($transaction->booking->contactDetails && $transaction->booking->contactDetails->isNotEmpty())
-                                                    <a href="{{ asset('storage/identities/' . $transaction->booking->contactDetails->first()->upload_identity) }}"
-                                                        target="_blank">
-                                                        <img src="{{ asset('storage/identities/' . $transaction->booking->contactDetails->first()->upload_identity) }}"
-                                                            width="70px" class="img-fluid" alt="image-identity">
-                                                    </a>
-                                                @endif
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>

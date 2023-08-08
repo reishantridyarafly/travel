@@ -16,7 +16,7 @@ class PaymentSeeder extends Seeder
     public function run()
     {
         $payments = [
-            [
+            [   
                 'name_bank' => 'BRI',
                 'account_number' => '389272323211',
                 'name_owner' => 'CV Langkuy',

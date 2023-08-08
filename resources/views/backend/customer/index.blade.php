@@ -56,7 +56,7 @@
                                                 <img src="{{ asset('storage/users/' . $customer->image) }}" width="70px" class="img-fluid" alt="image-customers">
                                             @endif
                                         </td>
-                                        <td class="p-3">{{ $customer->first_name }} {{ $customer->last_name }}</td>
+                                        <td class="p-3">{{ $customer->name }}</td>
                                         <td class="p-3">{{ $customer->username }}</td>
                                         <td class="p-3">{{ $customer->no_hp }}</td>
                                         <td class="p-3">{{ $customer->email }}</td>

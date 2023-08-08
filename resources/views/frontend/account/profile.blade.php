@@ -52,7 +52,7 @@
                     @endif
                     <div class="ms-3">
                         <h6 class="text-muted mb-0">Halo,</h6>
-                        <h5 class="mb-0">{{ $user->first_name }} {{ $user->last_name }}</h5>
+                        <h5 class="mb-0">{{ $user->name }}</h5>
                     </div>
                 </div>
                 <div class="shadow rounded p-4" role="tabpanel" aria-labelledby="account-details">
@@ -86,28 +86,18 @@
                                     </div>
                                 </div>
                             </div><!--end col-->
-                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Nama Depan</label>
+                                    <label class="form-label">Nama</label>
                                     <div class="form-icon position-relative">
-                                        <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{ $user->first_name }}" placeholder="Nama Depan :">
-                                        @error('first_name')
+                                        <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}" placeholder="Nama Depan :">
+                                        @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                 </div>
-                            </div><!--end col-->
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Nama Belakang</label>
-                                    <div class="form-icon position-relative">
-                                        <input name="last_name" type="text" class="form-control" value="{{ $user->last_name }}" placeholder="Nama Belakang :">
-                                    </div>
-                                </div>
-                            </div><!--end col-->
-                            <div class="col-md-6">
+    
                                 <div class="mb-3">
                                     <label class="form-label">No. HP</label>
                                     <div class="form-icon position-relative">

@@ -44,7 +44,7 @@ class ProfileController extends Controller
         // validation
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg|image|max:2048',
-            'first_name' => 'required',
+            'name' => 'required',
             'username' => 'required',
             'no_hp' => 'required',
             'email' => $rules,
@@ -53,8 +53,7 @@ class ProfileController extends Controller
         // update to table
         $user->update([
             'image' => $imageName,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'name' => $request->name,
             'username' => $request->username,
             'no_hp' => $request->no_hp,
             'email' => $request->email,
@@ -62,7 +61,7 @@ class ProfileController extends Controller
             'image.mimes' => 'File gambar harus memiliki format jpg, png, atau jpeg.',
             'image.image' => 'File yang diunggah harus berupa gambar.',
             'image.max' => 'Ukuran file gambar maksimum adalah 2MB.',
-            'first_name.required' => 'Nama Depan harus diisi.',
+            'name.required' => 'Nama Depan harus diisi.',
             'username.required' => 'Username harus diisi.',
             'no_hp.required' => 'No. HP harus diisi.',
             'email.required' => 'Email harus diisi.',

@@ -26,14 +26,7 @@ class BookingController extends Controller
         $transaction = Transaction::where('booking_id', $booking_id)->first();
         $transaction->status = 'success';
         $transaction->save();
-
-        if ($transaction) {
-            // Update status order by booking id
-            $order = Booking::where('id', $booking_id)->first();
-            $order->status = 'success';
-            $order->save();
-        }
-
+        
         return redirect()->back()->with('message', 'Transaksi berhasil divalidasi!');
     }
 
@@ -46,13 +39,6 @@ class BookingController extends Controller
         $transaction = Transaction::where('booking_id', $booking_id)->first();
         $transaction->status = 'failed';
         $transaction->save();
-
-        if ($transaction) {
-            // Update status order by booking id
-            $order = Booking::where('id', $booking_id)->first();
-            $order->status = 'failed';
-            $order->save();
-        }
 
         return redirect()->back()->with('message', 'Transaksi berhasil ditolak!');
     }

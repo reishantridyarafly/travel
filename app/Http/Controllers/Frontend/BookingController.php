@@ -35,7 +35,7 @@ class BookingController extends Controller
         $request->validate([
             'package' => 'required',
             'start_date' => 'required',
-        ],[
+        ], [
             'package.required' => 'Paket harus dipilih.',
             'start_date.required' => 'Tanggal mulai harus diisi.',
         ]);
@@ -91,35 +91,14 @@ class BookingController extends Controller
     {
         // validation
         $request->validate([
-            'no_identity' => 'required',
             'fullname' => 'required',
-            'type_identity' => 'required',
-            'upload_identity' => 'required|mimes:jpg,png,jpeg|image|max:2048',
-            'birth_date' => 'required',
-            'gender' => 'required',
             'telephone' => 'required',
             'email' => 'required',
-        ],[
-            'no_identity.required' => 'No. Identitas harus diisi.',
+        ], [
             'fullname.required' => 'Nama Lengkap harus diisi.',
-            'type_identity.required' => 'Tipe Identitas harus diisi.',
-            'upload_identity.required' => 'Upload Identitas harus diisi.',
-            'upload_identity.mimes' => 'Tipe file yang diperbolehkan adalah jpg, png, dan jpeg.',
-            'upload_identity.image' => 'File yang diunggah harus berupa gambar.',
-            'upload_identity.max' => 'Ukuran file tidak boleh lebih dari 2MB.',
-            'birth_date.required' => 'Tanggal Lahir harus diisi.',
-            'gender.required' => 'Jenis Kelamin harus diisi.',
             'telephone.required' => 'No. Telepon harus diisi.',
             'email.required' => 'Email harus diisi.',
         ]);
-
-        // process upload identity
-        if ($request->hasFile('upload_identity')) {
-            $imagePath = $request->file('upload_identity')->store('public/identities');
-            $imageName = basename($imagePath);
-        } else {
-            $imageName = '';
-        }
 
         // get the currently logged in user
         $user = Auth::user();
@@ -131,14 +110,6 @@ class BookingController extends Controller
         ContactDetail::create([
             'booking_id' => $idBooking,
             'user_id' => $user->id,
-            'no_identity' => $request->no_identity,
-            'fullname' => $request->fullname,
-            'type_identity' => $request->type_identity,
-            'upload_identity' => $imageName,
-            'birth_date' => $request->birth_date,
-            'gender' => $request->gender,
-            'telephone' => $request->telephone,
-            'email' => $request->email,
         ]);
 
         return redirect()->route('payment', ['id' => $idBooking]);
@@ -161,7 +132,7 @@ class BookingController extends Controller
         $payments = Payment::all();
 
         // get data contact detail
-        $contactDetail = ContactDetail::where('booking_id', $id)->first();
+        $contactDetail = ContactDetail::with('user')->where('booking_id', $id)->first();
 
         return view('frontend.booking.payment', compact('booking', 'payments', 'contactDetail'));
     }
@@ -243,11 +214,15 @@ class BookingController extends Controller
         $payment = Payment::where('name_bank', $transaction->name_bank)->first();
 
 
-        return view('frontend.booking.payment_detail', compact('transaction', 'booking', 'payment',
-                                                        'contactDetail'));
+        return view('frontend.booking.payment_detail', compact(
+            'transaction',
+            'booking',
+            'payment',
+            'contactDetail'
+        ));
     }
 
-    public function paymentDetailSave(Request $request,$id)
+    public function paymentDetailSave(Request $request, $id)
     {
         $transaction = Transaction::find($id);
 

@@ -41,7 +41,7 @@
                                     <label class="form-check-label" for="flexCheckDefault">Ingat saya</label>
                                 </div>
                             </div>
-                            <p class="forgot-pass mb-0"><a href="{{ route('password.request') }}" class="text-dark small fw-bold">Lupa kata sandi ?</a></p>
+                            {{-- <p class="forgot-pass mb-0"><a href="{{ route('password.request') }}" class="text-dark small fw-bold">Lupa kata sandi ?</a></p> --}}
                         </div>
 
                         <button class="btn btn-primary w-100" type="submit">Masuk</button>

@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('booking_id');
+            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name_bank')->nullable();
             $table->string('photo_evidence')->nullable();
             $table->decimal('total', 11, 2);
             $table->string('status')->default('pending');
             $table->timestamp('expired_at');
             $table->timestamps();
-            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

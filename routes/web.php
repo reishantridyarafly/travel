@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('/');
-Route::get('booking', [Frontend\BookingController::class, 'index'])->name('booking');
+Route::get('booking-langkuy', [Frontend\BookingController::class, 'index'])->name('booking_langkuy');
 Route::get('search', [Frontend\HomeController::class, 'search'])->name('search');
 Route::get('detail/{slug}', [Frontend\HomeController::class, 'show'])->name('detail');
 
@@ -53,26 +53,12 @@ Route::middleware(['role:admin'])->group(function () {
         'change-password' => Backend\ChangePasswordController::class,
     ]);
 
-    Route::get('transaksi', [Backend\BookingController::class, 'index'])->name('transaksi.index');
+    Route::get('booking', [Backend\BookingController::class, 'index'])->name('booking.index');
     Route::post('booking_validated', [Backend\BookingController::class, 'validated'])->name('booking_validated');
     Route::post('booking_rejected', [Backend\BookingController::class, 'rejected'])->name('booking_rejected');
 
     Route::get('reports', [App\Http\Controllers\Backend\ReportController::class, 'index'])->name('reports');
     Route::get('reports/data', [App\Http\Controllers\Backend\ReportController::class, 'data'])->name('reports.data');
 
-    Route::get('ratings/question1', [App\Http\Controllers\Backend\RatingController::class, 'question1'])->name('ratings.question1');
-    Route::get('ratings/question2', [App\Http\Controllers\Backend\RatingController::class, 'question2'])->name('ratings.question2');
-    Route::get('ratings/question3', [App\Http\Controllers\Backend\RatingController::class, 'question3'])->name('ratings.question3');
-    Route::get('ratings/question4', [App\Http\Controllers\Backend\RatingController::class, 'question4'])->name('ratings.question4');
-    Route::get('ratings/question5', [App\Http\Controllers\Backend\RatingController::class, 'question5'])->name('ratings.question5');
-    Route::get('ratings/question6', [App\Http\Controllers\Backend\RatingController::class, 'question6'])->name('ratings.question6');
-    Route::get('ratings/question7', [App\Http\Controllers\Backend\RatingController::class, 'question7'])->name('ratings.question7');
-    Route::get('ratings/question8', [App\Http\Controllers\Backend\RatingController::class, 'question8'])->name('ratings.question8');
-    Route::get('ratings/question9', [App\Http\Controllers\Backend\RatingController::class, 'question9'])->name('ratings.question9');
-    Route::get('ratings/question10', [App\Http\Controllers\Backend\RatingController::class, 'question10'])->name('ratings.question10');
-    Route::get('ratings/question11', [App\Http\Controllers\Backend\RatingController::class, 'question11'])->name('ratings.question11');
-    Route::get('ratings/question12', [App\Http\Controllers\Backend\RatingController::class, 'question12'])->name('ratings.question12');
-    Route::get('ratings/question13', [App\Http\Controllers\Backend\RatingController::class, 'question13'])->name('ratings.question13');
-    Route::get('ratings/question14', [App\Http\Controllers\Backend\RatingController::class, 'question14'])->name('ratings.question14');
-    Route::get('ratings/question15', [App\Http\Controllers\Backend\RatingController::class, 'question15'])->name('ratings.question15');
+    Route::get('ratings', [App\Http\Controllers\Backend\RatingController::class, 'index'])->name('ratings.index');
 });

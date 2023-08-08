@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <a href="{{ route('booking', ['id' => $package->id]) }}" class="btn btn-primary">Booking</a>
+                                        <a href="{{ route('booking_langkuy', ['id' => $package->id]) }}" class="btn btn-primary">Booking</a>
                                     </div>
                                 </div>
                                 <!--end col-->

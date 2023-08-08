@@ -34,8 +34,7 @@ class CustomerController extends Controller
         // validation
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg|image|max:2048',
-            'first_name' => 'required|max:255',
-            'last_name' => 'max:255',
+            'name' => 'required|max:255',
             'username' => 'required|max:255|regex:/^[^\s]+$/|unique:users',
             'no_hp' => 'required|min:11|max:13',
             'email' => 'required|email|max:255|unique:users',
@@ -44,8 +43,7 @@ class CustomerController extends Controller
 
         // insert to tabel users
         User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
+            'name' => $request->name,
             'username' => $request->username,
             'no_hp' => $request->no_hp,
             'email' => $request->email,
@@ -92,8 +90,7 @@ class CustomerController extends Controller
         // validation
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg|image|max:2048',
-            'first_name' => 'required|max:255',
-            'last_name' => 'max:255',
+            'name' => 'required|max:255',
             'username' => $rules_username,
             'no_hp' => 'required|min:11|max:13',
             'email' => $rules_email,
@@ -103,8 +100,6 @@ class CustomerController extends Controller
         // update to table
         $customer->update([
             'name' => $request->name,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
             'username' => $request->username,
             'no_hp' => $request->no_hp,
             'email' => $request->email,

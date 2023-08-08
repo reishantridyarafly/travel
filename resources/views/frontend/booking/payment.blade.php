@@ -16,7 +16,7 @@
             <nav aria-label="breadcrumb" class="d-inline-block">
                 <ul class="breadcrumb rounded shadow mb-0 px-4 py-2">
                     <li class="breadcrumb-item"><a href="{{ route('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('booking') }}">Booking</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('booking_langkuy') }}">Booking</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Metode Pembayaran</li>
                 </ul>
             </nav>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span>Nama</span>
-                                    <span class="fw-bold">{{ $contactDetail->fullname }}</span>
+                                    <span class="fw-bold">{{ $contactDetail->user->name }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span>Lokasi</span>

@@ -18,7 +18,7 @@
                             <ul class="list-unstyled footer-list mt-4">
                                 <li><a href="{{ url('/') }}#about" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Tentang</a></li>
                                 <li><a href="{{ url('/') }}#package" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Paket</a></li>
-                                <li><a href="{{ route('booking') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Booking</a></li>
+                                <li><a href="{{ route('booking_langkuy') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Booking</a></li>
                             </ul>
                         </div><!--end col-->
 

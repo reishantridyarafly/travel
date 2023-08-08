@@ -18,12 +18,15 @@ return new class extends Migration
             $table->string('booking_id');
             $table->unsignedBigInteger('package_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('question');
+            $table->unsignedBigInteger('indikator_id');
+            $table->unsignedBigInteger('subindikator_id');
             $table->integer('rating');
-            $table->timestamps();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('indikator_id')->references('id')->on('indikators')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('subindikator_id')->references('id')->on('subindikators')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

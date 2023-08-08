@@ -137,7 +137,7 @@
                                     </div>
                                     <div class="col-6 mb-2">
                                         @if ($booking->contactDetails && $booking->contactDetails->isNotEmpty())
-                                        <span class="fw-bold">{{ $booking->contactDetails->first()->fullname }}</span>
+                                        <span class="fw-bold">{{ $booking->user->name }}</span>
                                         @endif
                                     </div>
                                     <div class="col-6 mb-2">

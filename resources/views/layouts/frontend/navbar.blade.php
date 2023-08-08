@@ -62,7 +62,7 @@
                 <li><a href="{{ route('/') }}" class="sub-menu-item {{ Request::is('/') ? 'active' : '' }}">Beranda</a></li>
                 <li><a href="{{ url('/') }}#about" class="sub-menu-item {{ Request::is('#about') ? 'active' : '' }}">Tentang</a></li>
                 <li><a href="{{ url('/') }}#package" class="sub-menu-item {{ Request::is('#package') ? 'active' : '' }}">Paket</a></li>
-                <li><a href="{{ route('booking') }}" class="sub-menu-item {{ Request::is('booking') ? 'active' : '' }}">Booking</a></li>
+                <li><a href="{{ route('booking_langkuy') }}" class="sub-menu-item {{ Request::is('booking') ? 'active' : '' }}">Booking</a></li>
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->
