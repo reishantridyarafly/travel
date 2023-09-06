@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('subindikators', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_subindikator', 100)->unique();
             $table->string('name', 100);
             $table->unsignedBigInteger('indikator_id');
             $table->foreign('indikator_id')->references('id')->on('indikators')->onDelete('cascade')->onUpdate('cascade');

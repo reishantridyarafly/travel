@@ -33,8 +33,8 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|max:2048',
-            'image.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|max:3054',
+            'image.*' => 'image|mimes:jpeg,png,jpg|max:3054',
             'name' => 'required|max:255',
             'location' => 'required|max:255',
             'price' => 'required|max:15',
@@ -95,8 +95,8 @@ class PackageController extends Controller
     {
         // validation
         $request->validate([
-            'image' => 'max:2048',
-            'image.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'max:3054',
+            'image.*' => 'image|mimes:jpeg,png,jpg|max:3054',
             'name' => 'required|max:255',
             'location' => 'required|max:255',
             'price' => 'required|max:15',

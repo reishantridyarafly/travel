@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Subindikator;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 

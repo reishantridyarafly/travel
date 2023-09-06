@@ -19,7 +19,8 @@ class RatingController extends Controller
             'booking_id' => $request->input('booking_id'),
             'package_id' => $request->input('package_id'),
             'user_id' => $user->id,
-            'question' => $request->input('question'),
+            'indikator_id' => $request->input('indikator_id'),
+            'subindikator_id' => $request->input('subindikator_id'),
             'rating' => $request->input('rating'),
         ]);
 

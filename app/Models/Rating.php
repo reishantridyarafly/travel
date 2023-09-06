@@ -25,4 +25,14 @@ class Rating extends Model
     {
         return $this->belongsTo(Booking::class);
     }
+
+    public function indikator()
+    {
+        return $this->belongsTo(Indikator::class);
+    }
+
+    public function subindikator()
+    {
+        return $this->belongsTo(Subindikator::class);
+    }
 }
