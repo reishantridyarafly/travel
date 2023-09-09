@@ -45,7 +45,7 @@
                         <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row mt-4">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Foto Profil</label>
                                         <div class="form-icon position-relative">
@@ -75,25 +75,11 @@
                                 </div><!--end col-->
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Nama Depan <span class="text-danger">*</span></label>
+                                        <label class="form-label">Nama<span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5 @error('first_name') is-invalid @enderror" placeholder="Nama Depan" name="first_name" value="{{ $profile->first_name }}" autocomplete="first_name">
-                                            @error('first_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div><!--end col-->
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nama Belakang</label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5 @error('last_name') is-invalid @enderror" placeholder="Nama Belakang" name="last_name" value="{{ $profile->last_name }}" autocomplete="last_name">
-                                            @error('last_name')
+                                            <input type="text" class="form-control ps-5 @error('name') is-invalid @enderror" placeholder="Nama" name="name" value="{{ $profile->name }}" autocomplete="name">
+                                            @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

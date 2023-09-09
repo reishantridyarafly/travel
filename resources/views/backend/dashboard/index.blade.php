@@ -128,11 +128,11 @@
             },
             series: [{
                 name: 'indikator',
-                data: [{{ number_format($informationGainTangibles, 2) }},
-                    {{ number_format($informationGainReliability, 2) }},
-                    {{ number_format($informationGainEmphaty, 2) }},
-                    {{ number_format($informationGainAssurance, 2) }},
-                    {{ number_format($informationGainEmphaty, 2) }}
+                data: [{{ number_format($averageTangibles, 2) }},
+                    {{ number_format($averageReliability, 2) }},
+                    {{ number_format($averageResponsive, 2) }},
+                    {{ number_format($averageAssurance, 2) }},
+                    {{ number_format($averageEmphaty, 2) }}
                 ]
             }],
             xaxis: {
@@ -150,8 +150,8 @@
             },
             series: [{
                 name: 'puas',
-                data: [{{ number_format($jumlahBooking[0]->jumlah_puas, 2) }},
-                    {{ number_format( $jumlahBooking[0]->jumlah_tidak_puas, 2) }},
+                data: [{{ $jumlahBooking[0]->jumlah_puas }},
+                    {{ $jumlahBooking[0]->jumlah_tidak_puas }},
                 ]
             }],
             xaxis: {
