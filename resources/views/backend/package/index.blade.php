@@ -60,7 +60,7 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        <td class="p-3">{{ $package->name }}</td>
+                                        <td class="p-3">{{ $package->name }} ({{ $package->kapasitas }} Pax)</td>
                                         <td class="p-3">{{ $package->location }}</td>
                                         <td class="p-3">
                                             @foreach ($package->benefits as $benefit)

@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <div class="text-center">
                                 <span class="badge bg-primary">Paket</span>
-                                <h4 class="mt-3">{{ $package->name }}</h4>
+                                <h4 class="mt-3">{{ $package->name }} ({{ $package->kapasitas }} Pax)</h4>
 
                                 <ul class="list-unstyled mt-3">
                                     <li class="list-inline-item text-muted me-2"><i
@@ -85,7 +85,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <a href="{{ route('booking_langkuy', ['id' => $package->id]) }}" class="btn btn-primary">Booking</a>
+                                        <a href="{{ route('booking_langkuy', ['id' => $package->id]) }}"
+                                            class="btn btn-primary">Booking</a>
                                     </div>
                                 </div>
                                 <!--end col-->

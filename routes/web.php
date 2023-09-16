@@ -65,3 +65,17 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::get('ratings', [App\Http\Controllers\Backend\RatingController::class, 'index'])->name('ratings.index');
 });
+
+Route::middleware(['role:admin|owner'])->group(function () {
+    Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::resources([
+        'profile' => Backend\ProfileController::class,
+        'change-password' => Backend\ChangePasswordController::class,
+    ]);
+
+    Route::get('reports', [App\Http\Controllers\Backend\ReportController::class, 'index'])->name('reports');
+    Route::get('reports/data', [App\Http\Controllers\Backend\ReportController::class, 'data'])->name('reports.data');
+
+    Route::get('ratings', [App\Http\Controllers\Backend\RatingController::class, 'index'])->name('ratings.index');
+});

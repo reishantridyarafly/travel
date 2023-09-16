@@ -49,24 +49,27 @@
                                     @csrf
                                     <input type="hidden" name="booking_id" value="{{ $booking->id }}">
                                     <div class="row">
-                                        <div class="mb-3">
-                                            <label class="form-label">Nama Lengkap <span
-                                                    class="text-danger">*</span></label>
-                                            <input name="fullname" id="fullname" type="text"
-                                                class="form-control @error('fullname') is-invalid @enderror"
-                                                value="{{ auth()->user()->name }}" placeholder="Nama Lengkap :">
-                                            @error('fullname')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-
+                                        @for ($i = 0; $i < $booking->package->kapasitas; $i++)
+                                            <div class="mb-3">
+                                                <label class="form-label">Nama Lengkap {{ $i == 0 ? 'Ketua' : 'Anggota' }}
+                                                    <span class="text-danger">*</span></label>
+                                                <input name="fullnames[]" id="fullname{{ $i }}" type="text"
+                                                    class="form-control @error('fullnames.' . $i) is-invalid @enderror"
+                                                    value="{{ $i == 0 ? auth()->user()->name : old('fullnames.' . $i) }}"
+                                                    placeholder="Nama Lengkap :">
+                                                @error('fullnames.' . $i)
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        @endfor
+                                        <hr>
                                         <div class="mb-3">
                                             <label class="form-label">No. Telepon <span class="text-danger">*</span></label>
                                             <input name="telephone" id="telephone" type="number"
                                                 class="form-control @error('telephone') is-invalid @enderror"
-                                                value="{{  auth()->user()->no_hp }}" placeholder="No. Telepon :">
+                                                value="{{ auth()->user()->no_hp }}" placeholder="No. Telepon :">
                                             @error('telephone')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -78,7 +81,7 @@
                                             <label class="form-label">Email <span class="text-danger">*</span></label>
                                             <input name="email" id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror"
-                                                value="{{  auth()->user()->email }}" placeholder="Email :">
+                                                value="{{ auth()->user()->email }}" placeholder="Email :">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -112,7 +115,8 @@
                                         <tbody>
                                             <tr>
                                                 {{-- <td><img src="{{ asset('storage/packages/' . $booking->package->images) }}" width="50px" alt="paket"></td> --}}
-                                                <td class="fw-bold" colspan="2">{{ $booking->package->name }}</td>
+                                                <td class="fw-bold" colspan="2">{{ $booking->package->name }}
+                                                    ({{ $booking->package->kapasitas }} Pax)</td>
                                             </tr>
                                             <tr>
                                                 <td width="10%">Tanggal Mulai</td>

@@ -64,7 +64,7 @@
                                                     @foreach ($packages as $package)
                                                         <option value="{{ $package->id }}"
                                                             {{ $selectedId == $package->id ? 'selected' : '' }}>
-                                                            {{ $package->name }} - {{ $package->duration }} Hari
+                                                            {{ $package->name }} ({{ $package->kapasitas }} Pax) - {{ $package->duration }} Hari
                                                         </option>
                                                     @endforeach
                                                 </select>

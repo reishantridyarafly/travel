@@ -39,6 +39,7 @@ class PackageController extends Controller
             'location' => 'required|max:255',
             'price' => 'required|max:15',
             'benefits' => 'required',
+            'kapasitas' => 'required|max:12',
             'duration' => 'required|max:12',
             'description' => 'required',
         ]);
@@ -53,6 +54,7 @@ class PackageController extends Controller
             'location' => $request->location,
             'price' => $price,
             'duration' => $request->duration,
+            'kapasitas' => $request->kapasitas,
             'description' => $request->description,
         ]);
 
@@ -102,6 +104,7 @@ class PackageController extends Controller
             'price' => 'required|max:15',
             'benefits' => 'required',
             'duration' => 'required',
+            'kapasitas' => 'required|max:12',
             'description' => 'required',
         ]);
 
@@ -118,6 +121,7 @@ class PackageController extends Controller
             'location' => $request->location,
             'price' => $price,
             'duration' => $request->duration,
+            'kapasitas' => $request->kapasitas,
             'description' => $request->description,
         ]);
 

@@ -48,7 +48,7 @@ class CustomerController extends Controller
             'no_hp' => $request->no_hp,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])->assignRole('user');
+        ])->assignRole('owner');
 
         return redirect('customers')->with('message', 'Pelanggan berhasil ditambahkan!');
     }

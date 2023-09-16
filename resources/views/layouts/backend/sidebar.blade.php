@@ -15,14 +15,16 @@
             @if (Auth::user()->hasRole('admin'))
                 <li class="{{ Request::is('packages*') ? 'active' : '' }}"><a href="{{ route('packages.index') }}"><i
                             class="uil uil-package me-2"></i>Paket</a></li>
+
+                <li class="{{ Request::is('booking*') ? 'active' : '' }}"><a href="{{ route('booking.index') }}"><i
+                            class="uil uil-receipt me-2"></i>Booking</a></li>
+                <li class="{{ Request::is('customers*') ? 'active' : '' }}"><a href="{{ route('customers.index') }}"><i
+                            class="uil uil-users-alt me-2"></i>Pelanggan</a></li>
             @endif
-            <li class="{{ Request::is('booking*') ? 'active' : '' }}"><a href="{{ route('booking.index') }}"><i
-                        class="uil uil-receipt me-2"></i>Booking</a></li>
-            <li class="{{ Request::is('customers*') ? 'active' : '' }}"><a href="{{ route('customers.index') }}"><i
-                        class="uil uil-users-alt me-2"></i>Pelanggan</a></li>
+
+            <li class="{{ Request::is('ratings*') ? 'active' : '' }}"><a href="{{ route('ratings.index') }}"><i
+                        class="uil uil-star me-2"></i>Rating</a></li>
             @if (Auth::user()->hasRole('admin'))
-                <li class="{{ Request::is('ratings*') ? 'active' : '' }}"><a href="{{ route('ratings.index') }}"><i
-                            class="uil uil-star me-2"></i>Rating</a></li>
                 <li class="{{ Request::is('payments*') ? 'active' : '' }}"><a href="{{ route('payments.index') }}"><i
                             class="uil uil-credit-card me-2"></i>Payment</a></li>
             @endif

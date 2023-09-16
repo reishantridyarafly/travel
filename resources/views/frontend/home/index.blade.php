@@ -27,22 +27,12 @@
                         <div class="card border-0 tab-pane fade show active">
                             <form action="{{ route('search') }}" method="GET" class="card-body text-start">
                                 <div class="row">
-                                    <div class="col-lg-5 col-md-6 col-12">
+                                    <div class="col-lg-10 col-md-6 col-12">
                                         <div class="mb-3">
                                             <label class="form-label">Cari :</label>
                                             <div class="form-icon position-relative">
                                                 <i data-feather="search" class="fea icon-sm icons"></i>
                                                 <input name="key" id="key" type="text" class="form-control ps-5" placeholder="Cari :">
-                                            </div>
-                                        </div>
-                                    </div><!--end col-->
-
-                                    <div class="col-lg-5 col-md-6 col-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Kota:</label>
-                                            <div class="form-icon position-relative">
-                                                <i data-feather="map-pin" class="fea icon-sm icons"></i>
-                                                <input name="city" id="city" type="text" class="form-control ps-5" placeholder="Kota :">
                                             </div>
                                         </div>
                                     </div><!--end col-->
@@ -118,7 +108,7 @@
                             </a>
                         </div>
                         <div class="card-body content p-4">
-                            <a href="javascript:void(0)" class="text-dark product-name h6">{{ $package->name }}</a>
+                            <a href="javascript:void(0)" class="text-dark product-name h6">{{ $package->name }} ({{ $package->kapasitas }} Pax)</a>
                             <ul class="list-unstyled text-muted mt-2 mb-0">
                                 <li class="list-inline-item me-2"><i class="uil uil-map-marker me-1"></i>{{ $package->location }}</li>
                                 <li class="list-inline-item"><i class="uil uil-calender me-1"></i>Durasi {{ $package->duration }} Hari</li>

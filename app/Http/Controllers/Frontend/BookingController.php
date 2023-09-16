@@ -91,11 +91,13 @@ class BookingController extends Controller
     {
         // validation
         $request->validate([
-            'fullname' => 'required',
+            'fullnames' => 'required|array',
+            'fullnames.*' => 'required',
             'telephone' => 'required',
             'email' => 'required',
         ], [
-            'fullname.required' => 'Nama Lengkap harus diisi.',
+            'fullnames.required' => 'Nama Lengkap harus diisi.',
+            'fullnames.*.required' => 'Nama Anggota harus diisi.',
             'telephone.required' => 'No. Telepon harus diisi.',
             'email.required' => 'Email harus diisi.',
         ]);
@@ -106,10 +108,12 @@ class BookingController extends Controller
         // booking id
         $idBooking = $request->booking_id;
 
-        // insert to tabel bookings
+        $combinedNames = implode(', ', $request->fullnames);
+
         ContactDetail::create([
             'booking_id' => $idBooking,
             'user_id' => $user->id,
+            'name' => $combinedNames,
         ]);
 
         return redirect()->route('payment', ['id' => $idBooking]);
