@@ -71,6 +71,10 @@
                                                     <div class="badge bg-soft-secondary rounded px-3 py-1">
                                                         {{ strtoupper($transaction->status) }}
                                                     </div>
+                                                @elseif ($transaction->status == 'process')
+                                                    <div class="badge bg-soft-warning rounded px-3 py-1">
+                                                        {{ strtoupper($transaction->status) }}
+                                                    </div>
                                                 @elseif ($transaction->status == 'success')
                                                     <div class="badge bg-soft-success rounded px-3 py-1">
                                                         {{ strtoupper($transaction->status) }}
@@ -100,6 +104,14 @@
                                                         <input type="hidden" name="booking_id"
                                                             value="{{ $transaction->booking_id }}">
                                                         <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                                                    </form>
+                                                @elseif ($transaction->status == 'process')
+                                                    <form action="{{ route('booking_finish') }}" method="POST"
+                                                        class="d-flex">
+                                                        @csrf
+                                                        <input type="hidden" name="booking_id"
+                                                            value="{{ $transaction->booking_id }}">
+                                                        <button type="submit" class="btn btn-success btn-sm">Selesai</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -151,8 +163,7 @@
                                                     <span>Nama</span>
                                                 </div>
                                                 <div class="col-6 mb-2">
-                                                    <span
-                                                        class="fw-bold">{{ $transaction->booking->user->name }}</span>
+                                                    <span class="fw-bold">{{ $transaction->booking->user->name }}</span>
                                                 </div>
                                             @endif
                                             <div class="col-6 mb-2">
@@ -196,15 +207,13 @@
                                                     <span>Telepon</span>
                                                 </div>
                                                 <div class="col-6 mb-2">
-                                                    <span
-                                                        class="fw-bold">{{ $transaction->booking->user->no_hp }}</span>
+                                                    <span class="fw-bold">{{ $transaction->booking->user->no_hp }}</span>
                                                 </div>
                                                 <div class="col-6 mb-2">
                                                     <span>Email</span>
                                                 </div>
                                                 <div class="col-6 mb-2">
-                                                    <span
-                                                        class="fw-bold">{{ $transaction->booking->user->email }}</span>
+                                                    <span class="fw-bold">{{ $transaction->booking->user->email }}</span>
                                                 </div>
                                             @endif
                                             <div class="col-6 mb-2">
@@ -233,7 +242,7 @@
                                                     <td class="text-muted">Belum Upload Bukti Pembayaran</td>
                                                 @endif
                                             </div>
-                                           
+
                                         </div>
                                     </div>
                                 </div>

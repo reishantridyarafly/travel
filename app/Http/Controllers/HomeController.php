@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailTanggapan;
 use App\Models\Booking;
 use App\Models\Rating;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {

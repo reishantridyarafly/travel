@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/send', [HomeController::class, 'send'])->name('send');
 Route::get('/tampil', [HomeController::class, 'tampil'])->name('tampil');
 
 Auth::routes();
@@ -47,7 +48,7 @@ Route::middleware(['role:user'])->group(function () {
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('dashboard');
-    
+
     Route::resources([
         'packages' => Backend\PackageController::class,
         'customers' => Backend\CustomerController::class,
@@ -59,6 +60,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('booking', [Backend\BookingController::class, 'index'])->name('booking.index');
     Route::post('booking_validated', [Backend\BookingController::class, 'validated'])->name('booking_validated');
     Route::post('booking_rejected', [Backend\BookingController::class, 'rejected'])->name('booking_rejected');
+    Route::post('booking_finish', [Backend\BookingController::class, 'finish'])->name('booking_finish');
 
     Route::get('reports', [App\Http\Controllers\Backend\ReportController::class, 'index'])->name('reports');
     Route::get('reports/data', [App\Http\Controllers\Backend\ReportController::class, 'data'])->name('reports.data');
@@ -68,7 +70,7 @@ Route::middleware(['role:admin'])->group(function () {
 
 Route::middleware(['role:admin|owner'])->group(function () {
     Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('dashboard');
-    
+
     Route::resources([
         'profile' => Backend\ProfileController::class,
         'change-password' => Backend\ChangePasswordController::class,
