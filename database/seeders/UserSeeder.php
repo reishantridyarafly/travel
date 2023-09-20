@@ -38,6 +38,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
 
         $user = User::create([
+            'nik' => '4857329610472581',
             'name' => 'User',
             'username' => 'user',
             'no_hp' => '083123456789',

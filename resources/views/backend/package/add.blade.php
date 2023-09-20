@@ -123,6 +123,7 @@
                                             </div>
                                         </div>
                                     </div><!--end col-->
+
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Kapasitas <span class="text-danger">*</span></label>
@@ -130,7 +131,7 @@
                                                 <div class="col-7 col-sm-10 mb-2">
                                                     <input name="kapasitas" id="kapasitas" type="number"
                                                         class="form-control @error('kapasitas') is-invalid @enderror"
-                                                        placeholder="Durasi" value="{{ old('kapasitas') }}">
+                                                        placeholder="Kapasitas" value="{{ old('kapasitas') }}">
                                                     @error('kapasitas')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}

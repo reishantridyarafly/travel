@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/send', [HomeController::class, 'send'])->name('send');
 Route::get('/tampil', [HomeController::class, 'tampil'])->name('tampil');
 
+
 Auth::routes();
 
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('/');

@@ -122,45 +122,54 @@
 @section('javascript')
     <script src="{{ asset('backend') }}/libs/apexcharts/apexcharts.min.js"></script>
     <script>
-        var options = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: 'indikator',
-                data: [{{ number_format($averageTangibles, 2) }},
-                    {{ number_format($averageReliability, 2) }},
-                    {{ number_format($averageResponsive, 2) }},
-                    {{ number_format($averageAssurance, 2) }},
-                    {{ number_format($averageEmphaty, 2) }}
-                ]
-            }],
-            xaxis: {
-                categories: ["Tangibles", "Reliability", "Responsive", "Assurance", "Emphaty"]
-            }
+    var options = {
+        chart: {
+            type: 'bar'
+        },
+        series: [{
+            name: 'indikator',
+            data: [{{ number_format($averageTangibles, 2) }},
+                {{ number_format($averageReliability, 2) }},
+                {{ number_format($averageResponsive, 2) }},
+                {{ number_format($averageAssurance, 2) }},
+                {{ number_format($averageEmphaty, 2) }}
+            ]
+        }],
+        xaxis: {
+            categories: ["Tangibles", "Reliability", "Responsive", "Assurance", "Empathy"]
         }
+    }
 
-        var indikator_chart = new ApexCharts(document.querySelector("#indikator_chart"), options);
+    var indikator_chart = new ApexCharts(document.querySelector("#indikator_chart"), options);
 
-        indikator_chart.render();
+    indikator_chart.render();
 
-        var options = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: 'puas',
-                data: [{{ $jumlahBooking[0]->jumlah_puas }},
-                    {{ $jumlahBooking[0]->jumlah_tidak_puas }},
-                ]
-            }],
-            xaxis: {
-                categories: ["Puas", "Tidak Puas"]
-            }
+    // Check if $jumlahBooking has elements before accessing them
+    var jumlahPuas = 0;
+    var jumlahTidakPuas = 0;
+
+    @if(!empty($jumlahBooking) && count($jumlahBooking) > 0)
+        jumlahPuas = {{ $jumlahBooking[0]->jumlah_puas }};
+        jumlahTidakPuas = {{ $jumlahBooking[0]->jumlah_tidak_puas }};
+    @endif
+
+    var options2 = {
+        chart: {
+            type: 'bar'
+        },
+        series: [{
+            name: 'puas',
+            data: [jumlahPuas, jumlahTidakPuas]
+        }],
+        xaxis: {
+            categories: ["Puas", "Tidak Puas"]
         }
+    }
 
-        var puas_chart = new ApexCharts(document.querySelector("#puas_chart"), options);
+    var puas_chart = new ApexCharts(document.querySelector("#puas_chart"), options2);
 
-        puas_chart.render();
-    </script>
+    puas_chart.render();
+</script>
+
+
 @endsection
