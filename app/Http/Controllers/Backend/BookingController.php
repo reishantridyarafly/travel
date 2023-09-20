@@ -7,6 +7,7 @@ use App\Mail\SendMailTanggapan;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Booking;
+use App\Models\ContactDetail;
 use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
@@ -29,6 +30,10 @@ class BookingController extends Controller
         $transaction->status = 'process';
         $transaction->save();
 
+        // update status
+        ContactDetail::where('booking_id', $booking_id)
+            ->update(['status' => 'process']);
+
         return redirect()->back()->with('message', 'Transaksi berhasil diproses!');
     }
 
@@ -42,6 +47,10 @@ class BookingController extends Controller
         $transaction->status = 'failed';
         $transaction->save();
 
+        // update status
+        ContactDetail::where('booking_id', $booking_id)
+            ->update(['status' => 'failed']);
+
         return redirect()->back()->with('message', 'Transaksi berhasil ditolak!');
     }
 
@@ -54,11 +63,15 @@ class BookingController extends Controller
         $transaction = Transaction::where('booking_id', $booking_id)->first();
         $transaction->status = 'success';
         $transaction->save();
-        
+
+        // update status
+        ContactDetail::where('booking_id', $booking_id)
+            ->update(['status' => 'success']);
+
         $email = $transaction->booking->user->email;
         Mail::to($email)
-        ->send(new SendMailTanggapan());
+            ->send(new SendMailTanggapan());
 
-        return redirect()->back()->with('message', 'Transaksi berhasil divalidasi!');      
+        return redirect()->back()->with('message', 'Transaksi berhasil divalidasi!');
     }
 }

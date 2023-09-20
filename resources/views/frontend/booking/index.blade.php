@@ -48,6 +48,11 @@
                     <div class="card shadow rounded border-0">
                         <div class="card-body py-5">
                             <div class="custom-form">
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                                 <form action="{{ route('booking.store') }}" method="POST">
                                     @csrf
                                     <div class="row">
@@ -64,7 +69,8 @@
                                                     @foreach ($packages as $package)
                                                         <option value="{{ $package->id }}"
                                                             {{ $selectedId == $package->id ? 'selected' : '' }}>
-                                                            {{ $package->name }} ({{ $package->kapasitas }} Pax) - {{ $package->duration }} Hari
+                                                            {{ $package->name }} ({{ $package->kapasitas }} Pax) -
+                                                            {{ $package->duration }} Hari
                                                         </option>
                                                     @endforeach
                                                 </select>

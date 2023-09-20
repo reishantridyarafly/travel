@@ -151,7 +151,11 @@
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <span>Nama</span>
-                                        <span class="fw-bold">{{ $contactDetail->fullname }}</span>
+                                        <span class="fw-bold">{{ $contactDetail->user->name }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <span>Nama Paket</span>
+                                        <span class="fw-bold">{{ $contactDetail->booking->package->name }}</span>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <span>Lokasi</span>

@@ -51,17 +51,38 @@
                                     <div class="row">
                                         @for ($i = 0; $i < $booking->package->kapasitas; $i++)
                                             <div class="mb-3">
-                                                <label class="form-label">Nama Lengkap {{ $i == 0 ? 'Ketua' : 'Anggota' }}
-                                                    <span class="text-danger">*</span></label>
-                                                <input name="fullnames[]" id="fullname{{ $i }}" type="text"
-                                                    class="form-control @error('fullnames.' . $i) is-invalid @enderror"
-                                                    value="{{ $i == 0 ? auth()->user()->name : old('fullnames.' . $i) }}"
-                                                    placeholder="Nama Lengkap :">
-                                                @error('fullnames.' . $i)
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Nama Lengkap
+                                                            {{ $i == 0 ? 'Ketua' : 'Anggota' }}
+                                                            <span class="text-danger">*</span></label>
+                                                        <input name="fullnames[]" id="fullname{{ $i }}"
+                                                            type="text"
+                                                            class="form-control @error('fullnames.' . $i) is-invalid @enderror"
+                                                            value="{{ $i == 0 ? auth()->user()->name : old('fullnames.' . $i) }}"
+                                                            placeholder="Nama Lengkap :">
+                                                        @error('fullnames.' . $i)
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
-                                                @enderror
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Nomor Induk Kependudukan
+                                                            {{ $i == 0 ? 'Ketua' : 'Anggota' }}
+                                                            <span class="text-danger">*</span></label>
+                                                        <input name="nik[]" id="nik{{ $i }}" type="number"
+                                                            class="form-control @error('nik.' . $i) is-invalid @enderror"
+                                                            value="{{ $i == 0 ? auth()->user()->nik : old('nik.' . $i) }}"
+                                                            placeholder="Nomor Induk Kependudukan :">
+                                                        @error('nik.' . $i)
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         @endfor
                                         <hr>

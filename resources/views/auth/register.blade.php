@@ -17,6 +17,18 @@
                             <h5 class="mb-3 text-center">Daftarkan akun anda</h5>
 
                             <div class="form-floating mb-2">
+                                <input type="text" class="form-control @error('nik') is-invalid @enderror"
+                                    name="nik" id="floatingInput" placeholder="Nomor Induk Kependudukan" value="{{ old('nik') }}"
+                                    autocomplete="nik">
+                                <label for="floatingInput">Nomor Induk Kependudukan</label>
+                                @error('nik')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-floating mb-2">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     name="name" id="floatingInput" placeholder="Nama Lengkap" value="{{ old('name') }}"
                                     autocomplete="name">

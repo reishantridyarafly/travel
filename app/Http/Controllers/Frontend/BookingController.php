@@ -89,35 +89,71 @@ class BookingController extends Controller
 
     public function contactDetailsSave(Request $request)
     {
-        // validation
+        // Validasi
         $request->validate([
             'fullnames' => 'required|array',
             'fullnames.*' => 'required',
+            'nik' => 'required|array',
+            'nik.*' => 'required|min:16|max:16',
             'telephone' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
         ], [
             'fullnames.required' => 'Nama Lengkap harus diisi.',
-            'fullnames.*.required' => 'Nama Anggota harus diisi.',
+            'fullnames.*.required' => 'Nama harus diisi.',
+            'nik.required' => 'NIK harus diisi.',
+            'nik.max' => 'Maksimal NIK 16 Karakter',
+            'nik.min' => 'Minimal NIK 16 Karakter',
+            'nik.*.required' => 'NIK harus diisi.',
             'telephone.required' => 'No. Telepon harus diisi.',
             'email.required' => 'Email harus diisi.',
+            'email.email' => 'Format email tidak valid.',
         ]);
 
         // get the currently logged in user
         $user = Auth::user();
 
-        // booking id
-        $idBooking = $request->booking_id;
+        $booking_id = $request->booking_id;
 
-        $combinedNames = implode(', ', $request->fullnames);
+        // Memeriksa apakah ada NIK yang telah digunakan dalam booking sebelumnya dengan status "pending" atau "proses"
+        $conflictingNiks = [];
+        foreach ($request->nik as $nik) {
+            $existingContact = ContactDetail::where('nik', $nik)
+                ->where('status', 'pending')
+                ->orWhere('status', 'process')
+                ->first();
 
-        ContactDetail::create([
-            'booking_id' => $idBooking,
-            'user_id' => $user->id,
-            'name' => $combinedNames,
-        ]);
+            if ($existingContact) {
+                // Jika ada NIK yang telah digunakan dalam booking sebelumnya dengan status "pending" atau "proses",
+                // tambahkan NIK ini ke daftar konflik
+                $conflictingNiks[] = $nik;
+            }
+        }
 
-        return redirect()->route('payment', ['id' => $idBooking]);
+        if (!empty($conflictingNiks)) {
+            // Ada NIK yang telah digunakan dalam booking sebelumnya dengan status "pending" atau "proses".
+            // Lakukan sesuatu di sini, misalnya, tampilkan pesan kesalahan.
+            Booking::where('id', $booking_id)->delete();
+            return redirect()->route('booking_langkuy')->with('error', 'Beberapa NIK telah digunakan dalam booking sebelumnya dengan status tertunda atau proses.');
+        } else {
+            // Jika tidak ada konflik dengan NIK yang digunakan sebelumnya, Anda dapat melanjutkan penyimpanan data.
+
+            // Simpan data kontak ke dalam database menggunakan perulangan
+            for ($i = 0; $i < count($request->fullnames); $i++) {
+                ContactDetail::create([
+                    'booking_id' => $booking_id,
+                    'user_id' => $user->id,
+                    'name' => $request->fullnames[$i],
+                    'nik' => $request->nik[$i],
+                    'status' => 'pending',
+                ]);
+            }
+
+            return redirect()->route('payment', ['id' => $booking_id]);
+        }
     }
+
+
+
 
     public function payment($id)
     {
