@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                             <h5 class="footer-head">Tentang Kami</h5>
-                            <p class="mt-4">Start working with Landrick that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                            <p class="mt-4">CV Langkuy Project merupakan salah satu perusahaan yang bergerak dalam bidang jasa open trip atau yang bisa disebut Tour And Travel yang berlokasi di Kuningan. Dengan menawarkan berbagai destinasi wisata yang menarik.</p>
                             <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
                                 <li class="list-inline-item"><a href="https://www.instagram.com/langkuy_project/" target="_blank" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
                             </ul><!--end icon-->
