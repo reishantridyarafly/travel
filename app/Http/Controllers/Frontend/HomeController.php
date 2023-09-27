@@ -31,9 +31,9 @@ class HomeController extends Controller
         return view('frontend.home.index', compact('packages'));
     }
 
-    public function show($slug)
+    public function show($id)
     {
-        $package = Package::where('slug', $slug)->firstOrFail();
+        $package = Package::where('id', $id)->firstOrFail();
 
         return view('frontend.home.detail', compact('package'));
     }
