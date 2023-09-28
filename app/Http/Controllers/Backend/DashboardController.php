@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\Package;
 use App\Models\User;

@@ -162,6 +162,7 @@
                                                 <div class="col-6 mb-2">
                                                     <span>Nama</span>
                                                 </div>
+                                                {{ $transaction->booking_id }}
                                                 <div class="col-6 mb-2">
                                                     <span class="fw-bold">{{ $transaction->booking->user->name }}</span>
                                                 </div>

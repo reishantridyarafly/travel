@@ -40,6 +40,7 @@ Route::middleware(['role:user'])->group(function () {
     Route::put('booking/payment/detail/{id}', [Frontend\BookingController::class, 'paymentDetailSave'])->name('payment_detail.save');
     Route::put('booking/payment/detail/cancel/{id}', [Frontend\BookingController::class, 'paymentDetailCancel'])->name('payment_detail.cancel');
     Route::get('histories', [App\Http\Controllers\Frontend\HistoryController::class, 'index'])->name('histories');
+    Route::get('histories/print/{id}', [App\Http\Controllers\Frontend\HistoryController::class, 'print'])->name('histories.print');
     Route::resources([
         'account' => App\Http\Controllers\Frontend\ProfileController::class,
         'changepassword' => App\Http\Controllers\Frontend\ChangePasswordController::class,

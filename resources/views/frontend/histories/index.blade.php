@@ -229,6 +229,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <a href="{{ url('histories/print/'.$booking->id) }}" target="_blank" class="btn btn-info">Print</a>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>

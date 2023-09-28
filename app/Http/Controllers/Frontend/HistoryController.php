@@ -21,4 +21,10 @@ class HistoryController extends Controller
 
         return view('frontend.histories.index', compact('bookings'));
     }
+
+    public function print($id)
+    {
+        $booking = Booking::find($id);
+        return view('frontend.histories.print', compact('booking'));
+    }
 }
