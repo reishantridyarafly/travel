@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendMailTanggapan;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
-use App\Models\Booking;
 use App\Models\ContactDetail;
 use Illuminate\Support\Facades\Mail;
 

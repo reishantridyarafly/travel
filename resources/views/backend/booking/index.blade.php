@@ -111,7 +111,8 @@
                                                         @csrf
                                                         <input type="hidden" name="booking_id"
                                                             value="{{ $transaction->booking_id }}">
-                                                        <button type="submit" class="btn btn-success btn-sm">Selesai</button>
+                                                        <button type="submit"
+                                                            class="btn btn-success btn-sm">Selesai</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -159,13 +160,23 @@
                                                 <span class="fw-bold">{{ $transaction->booking_id }}</span>
                                             </div>
                                             @if ($transaction->booking->contactDetails && $transaction->booking->contactDetails->isNotEmpty())
-                                                <div class="col-6 mb-2">
-                                                    <span>Nama</span>
-                                                </div>
-                                                {{ $transaction->booking_id }}
-                                                <div class="col-6 mb-2">
-                                                    <span class="fw-bold">{{ $transaction->booking->user->name }}</span>
-                                                </div>
+                                                @php
+                                                    $bookingId = $transaction->booking->id;
+                                                    $userAnggota = App\Models\ContactDetail::where('booking_id', $bookingId)
+                                                        ->pluck('name')
+                                                        ->toArray();
+                                                @endphp
+
+                                                @if (!empty($userAnggota))
+                                                    <div class="col-6 mb-2">
+                                                        <span>Nama</span>
+                                                    </div>
+                                                    <div class="col-6 mb-2">
+                                                        @foreach ($userAnggota as $anggota)
+                                                            <strong>{{ $anggota }}</strong><br>
+                                                        @endforeach
+                                                    </div>
+                                                @endif
                                             @endif
                                             <div class="col-6 mb-2">
                                                 <span>Paket</span>
