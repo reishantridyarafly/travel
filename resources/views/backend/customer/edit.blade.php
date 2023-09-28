@@ -28,19 +28,38 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row mt-4">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nama Depan <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text"
-                                                class="form-control ps-5 @error('name') is-invalid @enderror"
-                                                placeholder="Nama Depan" name="name"
-                                                value="{{ $customer->name }}" required autocomplete="name">
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nomor Induk Kependudukan <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text"
+                                                    class="form-control ps-5 @error('nik') is-invalid @enderror"
+                                                    placeholder="Nomor Induk Kependudukan" name="nik" value="{{ $customer->nik }}" required
+                                                    autocomplete="nik">
+                                                @error('nik')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nama <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text"
+                                                    class="form-control ps-5 @error('name') is-invalid @enderror"
+                                                    placeholder="Nama" name="name" value="{{ $customer->name }}" required
+                                                    autocomplete="name">
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

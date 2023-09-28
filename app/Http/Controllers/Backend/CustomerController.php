@@ -34,7 +34,7 @@ class CustomerController extends Controller
         // validation
         $request->validate([
             'image' => 'mimes:jpg,png,jpeg|image|max:2048',
-            'name' => 'required|max:255',
+            'nik' => 'required|string|max:16|min:16|unique:users',
             'username' => 'required|max:255|regex:/^[^\s]+$/|unique:users',
             'no_hp' => 'required|min:11|max:13',
             'email' => 'required|email|max:255|unique:users',
@@ -43,12 +43,13 @@ class CustomerController extends Controller
 
         // insert to tabel users
         User::create([
+            'nik' => $request->nik,
             'name' => $request->name,
             'username' => $request->username,
             'no_hp' => $request->no_hp,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])->assignRole('owner');
+        ])->assignRole('user');
 
         return redirect('customers')->with('message', 'Pelanggan berhasil ditambahkan!');
     }
@@ -87,8 +88,16 @@ class CustomerController extends Controller
             $rules_password = '';
         }
 
+        // check if nik unique the user nik
+        if ($customer->nik == $request->nik) {
+            $rules_nik = 'required|string|max:16|min:16';
+        } else {
+            $rules_nik = 'required|string|max:16|min:16|unique:users';
+        }
+
         // validation
         $request->validate([
+            'nik' => $rules_nik,
             'image' => 'mimes:jpg,png,jpeg|image|max:2048',
             'name' => 'required|max:255',
             'username' => $rules_username,
@@ -99,6 +108,7 @@ class CustomerController extends Controller
 
         // update to table
         $customer->update([
+            'nik' => $request->nik,
             'name' => $request->name,
             'username' => $request->username,
             'no_hp' => $request->no_hp,

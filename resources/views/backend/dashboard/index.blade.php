@@ -101,6 +101,115 @@
                             <h6 class="mb-2 fw-bold">Informasi Indikator</h6>
                         </div>
                         <div id="indikator_chart" class="apex-chart"></div>
+                        <div class="col-3">
+                            <table class="table">
+                                <tr>
+                                    <th>Tangibles</th>
+                                    <td>:</td>
+                                    <td>
+                                        @php
+                                            $hasilTangiblesText = '';
+                                            if ($averageTangibles >= 4.1) {
+                                                $hasilTangiblesText = 'Sangat Puas';
+                                            } elseif ($averageTangibles >= 3.1) {
+                                                $hasilTangiblesText = 'Puas';
+                                            } elseif ($averageTangibles >= 2.1) {
+                                                $hasilTangiblesText = 'Biasa saja/Netral';
+                                            } elseif ($averageTangibles <= 2) {
+                                                $hasilTangiblesText = 'Tidak Puas';
+                                            } else {
+                                                $hasilTangiblesText = 'Sangat Tidak Puas';
+                                            }
+                                        @endphp
+                                        {{ $hasilTangiblesText }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Reliability</th>
+                                    <td>:</td>
+                                    <td>
+                                        @php
+                                            $hasilReliabilityText = '';
+                                            if ($averageReliability >= 4.1) {
+                                                $hasilReliabilityText = 'Sangat Puas';
+                                            } elseif ($averageReliability >= 3.1) {
+                                                $hasilReliabilityText = 'Puas';
+                                            } elseif ($averageReliability >= 2.1) {
+                                                $hasilReliabilityText = 'Biasa saja/Netral';
+                                            } elseif ($averageReliability <= 2) {
+                                                $hasilReliabilityText = 'Tidak Puas';
+                                            } else {
+                                                $hasilReliabilityText = 'Sangat Tidak Puas';
+                                            }
+                                        @endphp
+                                        {{ $hasilReliabilityText }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Responsive</th>
+                                    <td>:</td>
+                                    <td>
+                                        @php
+                                            $hasilResponsiveText = '';
+                                            if ($averageResponsive >= 4.1) {
+                                                $hasilResponsiveText = 'Sangat Puas';
+                                            } elseif ($averageResponsive >= 3.1) {
+                                                $hasilResponsiveText = 'Puas';
+                                            } elseif ($averageResponsive >= 2.1) {
+                                                $hasilResponsiveText = 'Biasa saja/Netral';
+                                            } elseif ($averageResponsive <= 2) {
+                                                $hasilResponsiveText = 'Tidak Puas';
+                                            } else {
+                                                $hasilResponsiveText = 'Sangat Tidak Puas';
+                                            }
+                                        @endphp
+                                        {{ $hasilResponsiveText }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Assurance</th>
+                                    <td>:</td>
+                                    <td>
+                                        @php
+                                            $hasilAssuranceText = '';
+                                            if ($averageAssurance >= 4.1) {
+                                                $hasilAssuranceText = 'Sangat Puas';
+                                            } elseif ($averageAssurance >= 3.1) {
+                                                $hasilAssuranceText = 'Puas';
+                                            } elseif ($averageAssurance >= 2.1) {
+                                                $hasilAssuranceText = 'Biasa saja/Netral';
+                                            } elseif ($averageAssurance <= 2) {
+                                                $hasilAssuranceText = 'Tidak Puas';
+                                            } else {
+                                                $hasilAssuranceText = 'Sangat Tidak Puas';
+                                            }
+                                        @endphp
+                                        {{ $hasilAssuranceText }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Emphaty</th>
+                                    <td>:</td>
+                                    <td>
+                                        @php
+                                            $hasilEmphatyText = '';
+                                            if ($averageEmphaty >= 4.1) {
+                                                $hasilEmphatyText = 'Sangat Puas';
+                                            } elseif ($averageEmphaty >= 3.1) {
+                                                $hasilEmphatyText = 'Puas';
+                                            } elseif ($averageEmphaty >= 2.1) {
+                                                $hasilEmphatyText = 'Biasa saja/Netral';
+                                            } elseif ($averageEmphaty <= 2) {
+                                                $hasilEmphatyText = 'Tidak Puas';
+                                            } else {
+                                                $hasilEmphatyText = 'Sangat Tidak Puas';
+                                            }
+                                        @endphp
+                                        {{ $hasilEmphatyText }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
@@ -122,54 +231,54 @@
 @section('javascript')
     <script src="{{ asset('backend') }}/libs/apexcharts/apexcharts.min.js"></script>
     <script>
-    var options = {
-        chart: {
-            type: 'bar'
-        },
-        series: [{
-            name: 'indikator',
-            data: [{{ number_format($averageTangibles, 2) }},
-                {{ number_format($averageReliability, 2) }},
-                {{ number_format($averageResponsive, 2) }},
-                {{ number_format($averageAssurance, 2) }},
-                {{ number_format($averageEmphaty, 2) }}
-            ]
-        }],
-        xaxis: {
-            categories: ["Tangibles", "Reliability", "Responsive", "Assurance", "Empathy"]
+        var options = {
+            chart: {
+                type: 'bar'
+            },
+            series: [{
+                name: 'indikator',
+                data: [{{ number_format($averageTangibles, 2) }},
+                    {{ number_format($averageReliability, 2) }},
+                    {{ number_format($averageResponsive, 2) }},
+                    {{ number_format($averageAssurance, 2) }},
+                    {{ number_format($averageEmphaty, 2) }}
+                ]
+            }],
+            xaxis: {
+                categories: ["Tangibles", "Reliability", "Responsive", "Assurance", "Empathy"]
+            }
         }
-    }
 
-    var indikator_chart = new ApexCharts(document.querySelector("#indikator_chart"), options);
+        var indikator_chart = new ApexCharts(document.querySelector("#indikator_chart"), options);
 
-    indikator_chart.render();
+        indikator_chart.render();
 
-    // Check if $jumlahBooking has elements before accessing them
-    var jumlahPuas = 0;
-    var jumlahTidakPuas = 0;
+        // Check if $jumlahBooking has elements before accessing them
+        var jumlahPuas = 0;
+        var jumlahTidakPuas = 0;
 
-    @if(!empty($jumlahBooking) && count($jumlahBooking) > 0)
-        jumlahPuas = {{ $jumlahBooking[0]->jumlah_puas }};
-        jumlahTidakPuas = {{ $jumlahBooking[0]->jumlah_tidak_puas }};
-    @endif
+        @if (!empty($jumlahBooking) && count($jumlahBooking) > 0)
+            jumlahPuas = {{ $jumlahBooking[0]->jumlah_puas }};
+            jumlahTidakPuas = {{ $jumlahBooking[0]->jumlah_tidak_puas }};
+        @endif
 
-    var options2 = {
-        chart: {
-            type: 'bar'
-        },
-        series: [{
-            name: 'puas',
-            data: [jumlahPuas, jumlahTidakPuas]
-        }],
-        xaxis: {
-            categories: ["Puas", "Tidak Puas"]
+        var options2 = {
+            chart: {
+                type: 'bar'
+            },
+            series: [{
+                name: 'puas',
+                data: [jumlahPuas, jumlahTidakPuas]
+            }],
+            xaxis: {
+                categories: ["Puas", "Tidak Puas"]
+            }
         }
-    }
 
-    var puas_chart = new ApexCharts(document.querySelector("#puas_chart"), options2);
+        var puas_chart = new ApexCharts(document.querySelector("#puas_chart"), options2);
 
-    puas_chart.render();
-</script>
+        puas_chart.render();
+    </script>
 
 
 @endsection
