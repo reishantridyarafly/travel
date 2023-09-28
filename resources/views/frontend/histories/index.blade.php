@@ -1046,8 +1046,8 @@
                                         <input type="hidden" id="subindikator_id_16" value="16">
                                         <h6 class="fw-bold">16. Apakah anda puas dengan pelayanan kami</h6>
                                         <p class="text-muted small m-0">Penilaian :</p>
-                                        <p class="text-muted small m-0">Bintang 1 : Tidak setuju</p>
-                                        <p class="text-muted small m-0">Bintang 2 : Setuju</p>
+                                        <p class="text-muted small m-0">Bintang 1 : Tidak Puas</p>
+                                        <p class="text-muted small m-0">Bintang 2 : Puas</p>
 
                                         <div class="mt-3 text-center">
                                             <ul class="list-unstyled mb-0">
