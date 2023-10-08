@@ -96,17 +96,6 @@ class DashboardController extends Controller
             $averageEmphaty = 0; // Jika tidak ada rating yang ditemukan
         }
 
-
-        $jumlahBooking = Rating::with('subindikator')
-            ->where('subindikator_id', '=', '016') // Menggunakan '=' untuk memilih subindikator 016
-            ->select(
-                'subindikator_id',
-                DB::raw('SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) as jumlah_puas'),
-                DB::raw('SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) as jumlah_tidak_puas')
-            )
-            ->groupBy('subindikator_id')
-            ->get();
-
         return view('backend.dashboard.index', compact(
             'pending',
             'success',
@@ -117,8 +106,7 @@ class DashboardController extends Controller
             'averageReliability',
             'averageResponsive',
             'averageAssurance',
-            'averageEmphaty',
-            'jumlahBooking'
+            'averageEmphaty'
         ));
     }
 }

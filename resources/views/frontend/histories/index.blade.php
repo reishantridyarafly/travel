@@ -104,7 +104,7 @@
                                                                 class="btn btn-danger btn-sm mb-2">Batalkan</button><br>
                                                         </form>
                                                     @elseif ($booking->transactions->first()->status == 'success')
-                                                        @if ($booking->ratings()->count() < 16)
+                                                        @if ($booking->ratings()->count() < 15)
                                                             <a href="" class="btn btn-success btn-sm mb-2"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#question1{{ $booking->id }}">Tanggapan</a><br>
@@ -1021,60 +1021,15 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary btn-next" id="btn-next-15"
-                                onclick="saveRatingAndNext(15, '{{ $booking->id }}')">Lanjut</button>
+                                onclick="saveRatingAndNext(15, '{{ $booking->id }}')">Selesai</button>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
         <!-- Modal Question 15 End -->
-        <!-- Modal Question 16 -->
-        @foreach ($bookings as $booking)
-            <div class="modal fade" id="question16{{ $booking->id }}" tabindex="-1"
-                aria-labelledby="LoginForm-title" aria-hidden="true" data-bs-backdrop="static">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content rounded shadow border-0">
-                        <div class="modal-header border-bottom">
-                            <h5 class="modal-title" id="LoginForm-title">Tanggapan</h5>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="container">
-                                        <input type="hidden" id="package_id" value="{{ $booking->package_id }}">
-                                        <input type="hidden" id="booking_id" value="{{ $booking->id }}">
-                                        <input type="hidden" id="indikator_id_16" value="6">
-                                        <input type="hidden" id="subindikator_id_16" value="16">
-                                        <h6 class="fw-bold">16. Apakah anda puas dengan pelayanan kami</h6>
-                                        <p class="text-muted small m-0">Penilaian :</p>
-                                        <p class="text-muted small m-0">Bintang 1 : Tidak Puas</p>
-                                        <p class="text-muted small m-0">Bintang 2 : Puas</p>
-
-                                        <div class="mt-3 text-center">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="list-inline-item"><i
-                                                        class="mdi mdi-star icon-large text-muted"
-                                                        onclick="setRating(1, 16, '{{ $booking->id }}')"></i></li>
-                                                <li class="list-inline-item"><i
-                                                        class="mdi mdi-star icon-large text-muted"
-                                                        onclick="setRating(2, 16, '{{ $booking->id }}')"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn-next" id="btn-next-16"
-                                onclick="saveRatingAndNext(16, '{{ $booking->id }}')">Lanjut</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-        <!-- Modal Question 16 End -->
-    @endif
-@endsection
+        @endif
+        @endsection
 
 @section('javascript')
     <script src="{{ asset('backend') }}/libs/sweetalert2/sweetalert2.min.js"></script>
@@ -1094,7 +1049,7 @@
 
         let currentRating = 0;
         let currentQuestion = 1;
-        const totalQuestions = 16;
+        const totalQuestions = 15;
 
         function setRating(rating, questionNumber, bookingId) {
             const stars = document.querySelectorAll(`#question${questionNumber}${bookingId} .icon-large`);
