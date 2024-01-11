@@ -24,11 +24,11 @@ Route::get('/tampil', [HomeController::class, 'tampil'])->name('tampil');
 Auth::routes();
 
 Route::get('/', [Frontend\HomeController::class, 'index'])->name('/');
-Route::get('booking-langkuy', [Frontend\BookingController::class, 'index'])->name('booking_langkuy');
 Route::get('search', [Frontend\HomeController::class, 'search'])->name('search');
 Route::get('detail/{slug}', [Frontend\HomeController::class, 'show'])->name('detail');
 
 Route::middleware(['role:user'])->group(function () {
+    Route::get('booking-langkuy', [Frontend\BookingController::class, 'index'])->name('booking_langkuy');
     Route::post('booking', [Frontend\BookingController::class, 'store'])->name('booking.store');
     Route::put('booking/cancel/{id}', [Frontend\BookingController::class, 'cancel'])->name('booking.cancel');
     Route::get('booking/contact_details/{id}', [Frontend\BookingController::class, 'contactDetails'])->name('contact_details');
