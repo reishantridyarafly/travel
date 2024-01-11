@@ -213,19 +213,6 @@
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
-
-            <div class="row">
-                <div class="col-xl-12 col-lg-7 mt-4">
-                    <div class="card shadow border-0 p-4 pb-0 rounded">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-2 fw-bold">Informasi Puas & Tidak Puas</h6>
-                        </div>
-                        <div id="puas_chart" class="apex-chart"></div>
-                    </div>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div>
-    </div>
 @endsection
 
 @section('javascript')

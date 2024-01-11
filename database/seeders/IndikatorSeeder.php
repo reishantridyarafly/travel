@@ -36,10 +36,6 @@ class IndikatorSeeder extends Seeder
                 'kode_indikator' => '005',
                 'name' => 'Emphaty',
             ],
-            [
-                'kode_indikator' => '006',
-                'name' => 'Hasil',
-            ],
         ];
 
         DB::table('indikators')->insert($indikators);
