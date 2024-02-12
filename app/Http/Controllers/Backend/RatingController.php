@@ -25,7 +25,13 @@ class RatingController extends Controller
             ->groupBy('subindikator_id')
             ->get();
 
+        $averageIndikatorRatingsBooking = Rating::with('indikator', 'booking')
+            ->where('indikator_id', '<>', '006') // Menghindari indikator_id '006'
+            ->select('booking_id', 'indikator_id', DB::raw('AVG(rating) as average_rating'))
+            ->groupBy('booking_id', 'indikator_id')
+            ->get();
+
         // Mengirim data rata-rata ke tampilan (view) 'backend.ratings.index'
-        return view('backend.ratings.index', compact('averageIndikatorRatings', 'averageSubindikatorRatings'));
+        return view('backend.ratings.index', compact('averageIndikatorRatings', 'averageSubindikatorRatings', 'averageIndikatorRatingsBooking'));
     }
 }
