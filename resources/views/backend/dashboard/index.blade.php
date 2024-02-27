@@ -101,108 +101,108 @@
                             <h6 class="mb-2 fw-bold">Informasi Indikator</h6>
                         </div>
                         <div id="indikator_chart" class="apex-chart"></div>
-                        <div class="col-3">
+                        <div class="col-7">
                             <table class="table">
                                 <tr>
-                                    <th>Tangibles</th>
+                                    <th>Tangibles (Bukti Fisik)</th>
                                     <td>:</td>
                                     <td>
                                         @php
                                             $hasilTangiblesText = '';
                                             if ($averageTangibles >= 4.1) {
-                                                $hasilTangiblesText = 'Sangat Puas';
+                                                $hasilTangiblesText = 'Menunjukkan bahwa keterangan nilai Tangibles (Bukti Fisik) yaitu Sangat Puas pada grafik';
                                             } elseif ($averageTangibles >= 3.1) {
-                                                $hasilTangiblesText = 'Puas';
+                                                $hasilTangiblesText = 'Menunjukkan bahwa keterangan nilai Tangibles (Bukti Fisik) yaitu Puas pada grafik';
                                             } elseif ($averageTangibles >= 2.1) {
-                                                $hasilTangiblesText = 'Biasa saja/Netral';
+                                                $hasilTangiblesText = 'Menunjukkan bahwa keterangan nilai Tangibles (Bukti Fisik) yaitu Biasa saja/Netral pada grafik';
                                             } elseif ($averageTangibles <= 2) {
-                                                $hasilTangiblesText = 'Tidak Puas';
+                                                $hasilTangiblesText = 'Menunjukkan bahwa keterangan nilai Tangibles (Bukti Fisik) yaitu Tidak Puas pada grafik';
                                             } else {
-                                                $hasilTangiblesText = 'Sangat Tidak Puas';
+                                                $hasilTangiblesText = 'Menunjukkan bahwa keterangan nilai Tangibles (Bukti Fisik) yaitu Sangat Tidak Puas pada grafik';
                                             }
                                         @endphp
                                         {{ $hasilTangiblesText }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Reliability</th>
+                                    <th>Reliability (Keandalan)</th>
                                     <td>:</td>
                                     <td>
                                         @php
-                                            $hasilReliabilityText = '';
+                                        $hasilReliabilityText = '';
                                             if ($averageReliability >= 4.1) {
-                                                $hasilReliabilityText = 'Sangat Puas';
+                                                $hasilReliabilityText = 'Menunjukkan bahwa keterangan nilai Reliability (Keandalan) yaitu Sangat Puas pada grafik';
                                             } elseif ($averageReliability >= 3.1) {
-                                                $hasilReliabilityText = 'Puas';
+                                                $hasilReliabilityText = 'Menunjukkan bahwa keterangan nilai Reliability (Keandalan) yaitu Puas pada grafik';
                                             } elseif ($averageReliability >= 2.1) {
-                                                $hasilReliabilityText = 'Biasa saja/Netral';
+                                                $hasilReliabilityText = 'Menunjukkan bahwa keterangan nilai Reliability (Keandalan) yaitu Biasa saja/Netral pada grafik';
                                             } elseif ($averageReliability <= 2) {
-                                                $hasilReliabilityText = 'Tidak Puas';
+                                                $hasilReliabilityText = 'Menunjukkan bahwa keterangan nilai Reliability (Keandalan) yaitu Tidak Puas pada grafik';
                                             } else {
-                                                $hasilReliabilityText = 'Sangat Tidak Puas';
+                                                $hasilReliabilityText = 'Menunjukkan bahwa keterangan nilai Reliability (Keandalan) yaitu Sangat Tidak Puas pada grafik';
                                             }
                                         @endphp
                                         {{ $hasilReliabilityText }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Responsive</th>
+                                    <th>Responsive (Daya Tanggap)</th>
                                     <td>:</td>
                                     <td>
                                         @php
-                                            $hasilResponsiveText = '';
+                                        $hasilResponsiveText = '';
                                             if ($averageResponsive >= 4.1) {
-                                                $hasilResponsiveText = 'Sangat Puas';
+                                                $hasilResponsiveText = 'Menunjukkan bahwa keterangan nilai Responsive (Daya Tanggap) yaitu Sangat Puas pada grafik';
                                             } elseif ($averageResponsive >= 3.1) {
-                                                $hasilResponsiveText = 'Puas';
+                                                $hasilResponsiveText = 'Menunjukkan bahwa keterangan nilai Responsive (Daya Tanggap) yaitu Puas pada grafik';
                                             } elseif ($averageResponsive >= 2.1) {
-                                                $hasilResponsiveText = 'Biasa saja/Netral';
+                                                $hasilResponsiveText = 'MMenunjukkan bahwa keterangan nilai Responsive (Daya Tanggap) yaitu Biasa saja/Netral pada grafik';
                                             } elseif ($averageResponsive <= 2) {
-                                                $hasilResponsiveText = 'Tidak Puas';
+                                                $hasilResponsiveText = 'Menunjukkan bahwa keterangan nilai Responsive (Daya Tanggap) yaitu Tidak Puas pada grafik';
                                             } else {
-                                                $hasilResponsiveText = 'Sangat Tidak Puas';
+                                                $hasilResponsiveText = 'Menunjukkan bahwa keterangan nilai Responsive (Daya Tanggap) yaitu Sangat Tidak Puas pada grafik';
                                             }
                                         @endphp
                                         {{ $hasilResponsiveText }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Assurance</th>
+                                    <th>Assurance (Jaminan)</th>
                                     <td>:</td>
                                     <td>
                                         @php
-                                            $hasilAssuranceText = '';
+                                        $hasilAssuranceText = '';
                                             if ($averageAssurance >= 4.1) {
-                                                $hasilAssuranceText = 'Sangat Puas';
+                                                $hasilAssuranceText = 'Menunjukkan bahwa keterangan nilai Assurance (Jaminan) yaitu Sangat Puas pada grafik';
                                             } elseif ($averageAssurance >= 3.1) {
-                                                $hasilAssuranceText = 'Puas';
+                                                $hasilAssuranceText = 'Menunjukkan bahwa keterangan nilai Assurance (Jaminan) yaitu Puas pada grafik';
                                             } elseif ($averageAssurance >= 2.1) {
-                                                $hasilAssuranceText = 'Biasa saja/Netral';
+                                                $hasilAssuranceText = 'Menunjukkan bahwa keterangan nilai Assurance (Jaminan) yaitu Biasa saja/Netral pada grafik';
                                             } elseif ($averageAssurance <= 2) {
-                                                $hasilAssuranceText = 'Tidak Puas';
+                                                $hasilAssuranceText = 'Menunjukkan bahwa keterangan nilai Assurance (Jaminan) yaitu Tidak Puas pada grafik';
                                             } else {
-                                                $hasilAssuranceText = 'Sangat Tidak Puas';
+                                                $hasilAssuranceText = 'Menunjukkan bahwa keterangan nilai Assurance (Jaminan) yaitu Sangat Tidak Puas pada grafik';
                                             }
                                         @endphp
                                         {{ $hasilAssuranceText }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Emphaty</th>
+                                    <th>Emphaty (Empati)</th>
                                     <td>:</td>
                                     <td>
                                         @php
-                                            $hasilEmphatyText = '';
+                                        $hasilEmphatyText = '';
                                             if ($averageEmphaty >= 4.1) {
-                                                $hasilEmphatyText = 'Sangat Puas';
+                                                $hasilEmphatyText = 'Menunjukkan bahwa keterangan nilai Emphaty (Empati) yaitu Sangat Puas pada grafik';
                                             } elseif ($averageEmphaty >= 3.1) {
-                                                $hasilEmphatyText = 'Puas';
+                                                $hasilEmphatyText = 'Menunjukkan bahwa keterangan nilai Emphaty (Empati) yaitu Puas pada grafik';
                                             } elseif ($averageEmphaty >= 2.1) {
-                                                $hasilEmphatyText = 'Biasa saja/Netral';
+                                                $hasilEmphatyText = 'Menunjukkan bahwa keterangan nilai Emphaty (Empati) yaitu Biasa saja/Netral pada grafik';
                                             } elseif ($averageEmphaty <= 2) {
-                                                $hasilEmphatyText = 'Tidak Puas';
+                                                $hasilEmphatyText = 'Menunjukkan bahwa keterangan nilai Emphaty (Empati) yaitu Tidak Puas pada grafik';
                                             } else {
-                                                $hasilEmphatyText = 'Sangat Tidak Puas';
+                                                $hasilEmphatyText = 'Menunjukkan bahwa keterangan nilai Emphaty (Empati) yaitu Sangat Tidak Puas pada grafik';
                                             }
                                         @endphp
                                         {{ $hasilEmphatyText }}
