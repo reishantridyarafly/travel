@@ -95,13 +95,13 @@
             </div><!--end row-->
 
             <div class="row">
-                <div class="col-xl-12 col-lg-7 mt-4">
+                <div class="col-lg-12 mt-4">
                     <div class="card shadow border-0 p-4 pb-0 rounded">
                         <div class="d-flex justify-content-between">
                             <h6 class="mb-2 fw-bold">Informasi Indikator</h6>
                         </div>
                         <div id="indikator_chart" class="apex-chart"></div>
-                        <div class="col-7">
+                        <div class="col-3">
                             <table class="table">
                                 <tr>
                                     <th>Tangibles (Bukti Fisik)</th>
@@ -213,59 +213,147 @@
                     </div>
                 </div><!--end col-->
             </div><!--end row-->
-@endsection
+        @endsection
 
-@section('javascript')
-    <script src="{{ asset('backend') }}/libs/apexcharts/apexcharts.min.js"></script>
-    <script>
-        var options = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: 'indikator',
-                data: [{{ number_format($averageTangibles, 2) }},
-                    {{ number_format($averageReliability, 2) }},
-                    {{ number_format($averageResponsive, 2) }},
-                    {{ number_format($averageAssurance, 2) }},
-                    {{ number_format($averageEmphaty, 2) }}
-                ]
-            }],
-            xaxis: {
-                categories: ["Tangibles", "Reliability", "Responsive", "Assurance", "Empathy"]
-            }
-        }
+        @section('javascript')
+            <script src="{{ asset('backend') }}/libs/apexcharts/apexcharts.min.js"></script>
+            <script>
+                var options = {
+                    chart: {
+                        type: 'bar'
+                    },
+                    series: [{
+                        name: 'indikator',
+                        data: [{{ number_format($averageTangibles, 2) }},
+                            {{ number_format($averageReliability, 2) }},
+                            {{ number_format($averageResponsive, 2) }},
+                            {{ number_format($averageAssurance, 2) }},
+                            {{ number_format($averageEmphaty, 2) }}
+                        ]
+                    }],
+                    xaxis: {
+                        categories: ["Tangibles", "Reliability", "Responsive", "Assurance", "Empathy"]
+                    }
+                }
 
-        var indikator_chart = new ApexCharts(document.querySelector("#indikator_chart"), options);
+                var indikator_chart = new ApexCharts(document.querySelector("#indikator_chart"), options);
 
-        indikator_chart.render();
+                indikator_chart.render();
 
-        // Check if $jumlahBooking has elements before accessing them
-        var jumlahPuas = 0;
-        var jumlahTidakPuas = 0;
+                // Check if $jumlahBooking has elements before accessing them
+                var jumlahPuas = 0;
+                var jumlahTidakPuas = 0;
 
-        @if (!empty($jumlahBooking) && count($jumlahBooking) > 0)
-            jumlahPuas = {{ $jumlahBooking[0]->jumlah_puas }};
-            jumlahTidakPuas = {{ $jumlahBooking[0]->jumlah_tidak_puas }};
-        @endif
+                @if (!empty($jumlahBooking) && count($jumlahBooking) > 0)
+                    jumlahPuas = {{ $jumlahBooking[0]->jumlah_puas }};
+                    jumlahTidakPuas = {{ $jumlahBooking[0]->jumlah_tidak_puas }};
+                @endif
 
-        var options2 = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: 'puas',
-                data: [jumlahPuas, jumlahTidakPuas]
-            }],
-            xaxis: {
-                categories: ["Puas", "Tidak Puas"]
-            }
-        }
+                var options2 = {
+                    chart: {
+                        type: 'bar'
+                    },
+                    series: [{
+                        name: 'puas',
+                        data: [jumlahPuas, jumlahTidakPuas]
+                    }],
+                    xaxis: {
+                        categories: ["Puas", "Tidak Puas"]
+                    }
+                }
 
-        var puas_chart = new ApexCharts(document.querySelector("#puas_chart"), options2);
+                var puas_chart = new ApexCharts(document.querySelector("#puas_chart"), options2);
 
-        puas_chart.render();
-    </script>
+                puas_chart.render();
 
 
-@endsection
+                // Data rata-rata rating per indikator per tahun dari controller
+                var ratingsPerYearByIndikator = @json($ratingsPerYearByIndikator);
+
+                // Mengubah struktur data untuk digunakan dalam grafik
+                var seriesData = [];
+                var categories = [];
+
+                // Memproses data untuk setiap indikator
+                ratingsPerYearByIndikator.forEach(function(item) {
+                    if (!seriesData[item.indikator_id]) {
+                        var indikatorName = getIndikatorName(item
+                        .indikator_id); // Mengambil nama indikator dari fungsi getIndikatorName (contoh)
+                        seriesData[item.indikator_id] = {
+                            name: indikatorName,
+                            data: []
+                        };
+                    }
+
+                    seriesData[item.indikator_id].data.push(item.average_rating);
+                    if (!categories.includes(item.year)) {
+                        categories.push(item.year);
+                    }
+                });
+
+                // Menginisialisasi opsi grafik
+                var options = {
+                    series: Object.values(seriesData),
+                    chart: {
+                        type: 'bar',
+                        height: 350
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded'
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        colors: ['transparent']
+                    },
+                    xaxis: {
+                        categories: categories,
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Average Rating'
+                        }
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function(val) {
+                                return val.toFixed(2); // Mengatur desimal menjadi 2 angka
+                            }
+                        }
+                    }
+                };
+
+                // Menginisialisasi grafik dengan opsi yang telah ditentukan
+                var chart = new ApexCharts(document.querySelector("#indikator_chart_year"), options);
+                chart.render();
+
+                function getIndikatorName(indikatorId) {
+                    switch (indikatorId) {
+                        case 1:
+                            return 'Tangibles';
+                        case 2:
+                            return 'Reliability';
+                        case 3:
+                            return 'Responsive';
+                        case 4:
+                            return 'Assurance';
+                        case 5:
+                            return 'Empathy';
+                        default:
+                            return 'Unknown';
+                    }
+                }
+            </script>
+
+
+        @endsection

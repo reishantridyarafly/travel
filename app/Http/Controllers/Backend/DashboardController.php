@@ -96,6 +96,13 @@ class DashboardController extends Controller
             $averageEmphaty = 0; // Jika tidak ada rating yang ditemukan
         }
 
+        $ratingsPerYearByIndikator = Rating::selectRaw('YEAR(created_at) as year, indikator_id, AVG(rating) as average_rating')
+            ->where('indikator_id', '<>', '006')
+            ->whereRaw('YEAR(created_at) >= YEAR(CURDATE()) - 4')
+            ->groupBy('year', 'indikator_id')
+            ->get();
+            
+
         return view('backend.dashboard.index', compact(
             'pending',
             'success',
@@ -106,7 +113,8 @@ class DashboardController extends Controller
             'averageReliability',
             'averageResponsive',
             'averageAssurance',
-            'averageEmphaty'
+            'averageEmphaty',
+            'ratingsPerYearByIndikator'
         ));
     }
 }

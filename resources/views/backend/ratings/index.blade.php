@@ -103,6 +103,78 @@
                 <!--end col-->
             </div>
             <!--end row-->
+
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <div class="table-responsive shadow rounded">
+                        <div class="card-body">
+                            <table class="table table-center bg-white mb-0" id="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center border-bottom p-3">Booking ID</th>
+                                        <th class="text-center border-bottom p-3">Indikator</th>
+                                        <th class="border-bottom p-3">Rata-rata Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($averageIndikatorRatingsBooking as $index => $averageRating)
+                                        @if ($index == 0 || $averageRating->booking_id != $averageIndikatorRatingsBooking[$index - 1]->booking_id)
+                                            <?php $rowspanCount = $averageIndikatorRatingsBooking->where('booking_id', $averageRating->booking_id)->count(); ?>
+                                            <tr>
+                                                <td rowspan="{{ $rowspanCount }}">{{ $averageRating->booking_id }}
+                                                </td>
+                                                <td>{{ $averageRating->indikator->name }}</td>
+                                                <td>
+                                                    @php
+                                                        $averageRatingValue = number_format($averageRating->average_rating, 2);
+                                                        $starCount = floor($averageRatingValue);
+                                                        $remainingStars = 5 - $starCount;
+                                                    @endphp
+
+                                                    @for ($i = 1; $i <= $starCount; $i++)
+                                                        <i class="fa fa-star text-warning"></i>
+                                                    @endfor
+
+                                                    @if ($remainingStars > 0)
+                                                        @for ($i = 1; $i <= $remainingStars; $i++)
+                                                            <i class="fa fa-star-o text-secondary"></i>
+                                                        @endfor
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td>{{ $averageRating->indikator->name }}</td>
+                                                <td>
+                                                    @php
+                                                        $averageRatingValue = number_format($averageRating->average_rating, 2);
+                                                        $starCount = floor($averageRatingValue);
+                                                        $remainingStars = 5 - $starCount;
+                                                    @endphp
+
+                                                    @for ($i = 1; $i <= $starCount; $i++)
+                                                        <i class="fa fa-star text-warning"></i>
+                                                    @endfor
+
+                                                    @if ($remainingStars > 0)
+                                                        @for ($i = 1; $i <= $remainingStars; $i++)
+                                                            <i class="fa fa-star-o text-secondary"></i>
+                                                        @endfor
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
         </div>
     </div>
     <!--end container-->
